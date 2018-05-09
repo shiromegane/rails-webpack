@@ -2,10 +2,10 @@ version: '3'
 services:
   db:
     container_name: rails_mysql
-    build: .docker/containers/mysql
+    build: .containers/mysql
     image: rails_db:latest
     volumes:
-      #- .docker/containers/mysql/data:/var/li/mysql
+      #- .containers/mysql/data:/var/li/mysql
       - database:/var/lib/mysql
     ports:
       - 3306:3306
@@ -15,7 +15,7 @@ services:
     stdin_open: true
   kvs:
     container_name: rails_redis
-    build: .docker/containers/redis
+    build: .containers/redis
     image: rails_kvs:latest
     ports:
       - 6379:6379
@@ -23,7 +23,7 @@ services:
     stdin_open: true
   app:
     container_name: rails_app
-    build: .docker/containers/rails
+    build: .containers/rails
     image: rails_app:latest
     expose:
       - 3000
@@ -59,7 +59,7 @@ services:
     command: bash -c "bundle install -j4 && bundle exec rails s -b 0"
   web:
     container_name: rails_nginx
-    build: .docker/containers/nginx
+    build: .containers/nginx
     image: rails_web:latest
     ports:
       - 80:80
