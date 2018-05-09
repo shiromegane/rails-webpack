@@ -1,0 +1,80 @@
+version: '3'
+services:
+  db:
+    container_name: rails_mysql
+    build: .docker/containers/mysql
+    image: rails_db:latest
+    volumes:
+      #- .docker/containers/mysql/data:/var/li/mysql
+      - database:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    tty: true
+    stdin_open: true
+  kvs:
+    container_name: rails_redis
+    build: .docker/containers/redis
+    image: rails_kvs:latest
+    ports:
+      - 6379:6379
+    tty: true
+    stdin_open: true
+  app:
+    container_name: rails_app
+    build: .docker/containers/rails
+    image: rails_app:latest
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+      - kvs
+    links:
+      - db:database
+      - kvs:redis
+    volumes:
+      - .:/app
+      #- bundle:/usr/local/bundle
+    environment:
+      APP_DB_COLLATION: utf8mb4_bin
+      APP_DB_ENCODING: utf8mb4
+      APP_DB_CHARSET: utf8mb4
+      APP_DB_HOST: db
+      APP_DB_PORT: 3306
+      APP_DB_NAME: app_develop
+      APP_DB_USERNAME: app_user
+      APP_DB_PASSWORD: password
+      APP_TEST_DB_NAME: app_develop
+      RAILS_ENV: development
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
+      - 8.8.8.8
+      - 9.9.9.9
+    tty: true
+    stdin_open: true
+    command: bash -c "bundle install -j4 && bundle exec rails s -b 0"
+  web:
+    container_name: rails_nginx
+    build: .docker/containers/nginx
+    image: rails_web:latest
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - app
+    volumes:
+      - .:/app
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
+      - 8.8.8.8
+      - 9.9.9.9
+    tty: true
+    stdin_open: true
+volumes:
+  database:
+  bundle:
