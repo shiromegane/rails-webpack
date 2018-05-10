@@ -17,6 +17,6 @@ RUN apk update && apk upgrade && \
       mysql-client ruby-json tzdata yaml imagemagick && \
     gem install bundler && bundle install -j4 && \
     apk del build-dependencies
-
+# bundle installはコンテナ内でやらない方がいいらしい
 WORKDIR $ROOT_PATH
 COPY . $ROOT_PATH
