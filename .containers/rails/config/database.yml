@@ -5,7 +5,7 @@ default: &default
   charset: <%= ENV['APP_DB_CHARSET'].presence || 'utf8mb4' %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-development:
+development: &development
   <<: *default
   host: <%= ENV['APP_DB_HOST'].presence || 'localhost' %>
   port: <%= ENV['APP_DB_PORT'].presence || 3306 %>
@@ -29,6 +29,6 @@ production:
   <<: *default
   host: <%= ENV['APP_DB_HOST'].presence || 'localhost' %>
   port: <%= ENV['APP_DB_PORT'].presence || 3306 %>
-  database: <%= ENV['APP_DB_NAME'].presence || 'app_development' %>
+  database: <%= ENV['APP_DB_NAME'].presence || 'app_production' %>
   username: <%= ENV['APP_DB_USERNAME'].presence || 'username' %>
   password: <%= ENV['APP_DB_PASSWORD'].presence || 'password' %>

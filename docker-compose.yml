@@ -5,8 +5,8 @@ services:
     build: .containers/mysql
     image: rails_db:latest
     volumes:
-      #- .containers/mysql/data:/var/li/mysql
-      - database:/var/lib/mysql
+      - .containers/mysql/data:/var/lib/mysql
+      - .containers/mysql/log:/var/log/mysql
     ports:
       - 3306:3306
     environment:
@@ -33,11 +33,12 @@ services:
       - db
       - kvs
     links:
+      - db
       - db:database
+      - db:mysql
       - kvs:redis
     volumes:
-      - .:/app
-      #- bundle:/usr/local/bundle
+      - rails:/app
     environment:
       APP_DB_COLLATION: utf8mb4_bin
       APP_DB_ENCODING: utf8mb4
@@ -45,7 +46,7 @@ services:
       APP_DB_HOST: db
       APP_DB_PORT: 3306
       APP_DB_NAME: app_develop
-      APP_DB_USERNAME: app_user
+      APP_DB_USERNAME: root
       APP_DB_PASSWORD: password
       APP_TEST_DB_NAME: app_develop
       RAILS_ENV: development
@@ -56,7 +57,7 @@ services:
       - 9.9.9.9
     tty: true
     stdin_open: true
-    command: bash -c "bundle install -j4 && bundle exec rails s -b 0"
+    command: bundle exec rails s -b 0
   web:
     container_name: rails_nginx
     build: .containers/nginx
@@ -66,8 +67,10 @@ services:
       - 443:443
     depends_on:
       - app
+    links:
+      - app
     volumes:
-      - .:/app
+      - .containers/nginx/log:/var/log/nginx
     dns:
       - 1.1.1.1
       - 1.0.0.1
@@ -75,6 +78,3 @@ services:
       - 9.9.9.9
     tty: true
     stdin_open: true
-volumes:
-  database:
-  bundle:

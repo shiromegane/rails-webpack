@@ -6,17 +6,18 @@ ENV BUILD_PATH /tmp
 ENV ROOT_PATH /app
 
 WORKDIR $BUILD_PATH
-COPY Gemfile.default $BUILD_PATH/Gemfile
+COPY Gemfile $BUILD_PATH/Gemfile
 COPY Gemfile.lock $BUILD_PATH/Gemfile.lock
 
 RUN apk update && apk upgrade && \
     apk add --update --no-cache --virtual build-dependencies \
       build-base curl-dev linux-headers  libxml2-dev libxslt-dev \
-      ruby-dev yaml-dev zlib-dev mysql-dev && \
+      ruby-dev yaml-dev zlib-dev ca-certificates && \
     apk add --update --no-cache bash git vim nodejs less \
-      mysql-client ruby-json tzdata yaml imagemagick && \
-    gem install bundler && bundle install -j4 && \
-    apk del build-dependencies
+      mysql-dev ruby-json tzdata yaml imagemagick && \
+    gem install bundler && \
+    bundle config build.libv8 --with-system-v8 && bundle install -j4 && \
+    apk del build-dependencies && \
+    rm -rf /usr/bin/mysql*
 
 WORKDIR $ROOT_PATH
-COPY . $ROOT_PATH
