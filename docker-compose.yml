@@ -38,7 +38,7 @@ services:
       - db:mysql
       - kvs:redis
     volumes:
-      - rails:/app
+      - ./rails:/app
     environment:
       APP_DB_COLLATION: utf8mb4_bin
       APP_DB_ENCODING: utf8mb4
