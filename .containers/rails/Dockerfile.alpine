@@ -9,14 +9,27 @@ WORKDIR $BUILD_PATH
 COPY Gemfile $BUILD_PATH/Gemfile
 COPY Gemfile.lock $BUILD_PATH/Gemfile.lock
 
-RUN apk update && apk upgrade && \
-    apk add --update --no-cache --virtual build-dependencies \
-      build-base curl-dev linux-headers  libxml2-dev libxslt-dev \
-      ruby-dev yaml-dev zlib-dev ca-certificates && \
-    apk add --update --no-cache bash git vim nodejs less \
-      mysql-dev ruby-json tzdata yaml imagemagick && \
-    gem install bundler && \
-    bundle config build.libv8 --with-system-v8 && bundle install -j4 && \
+RUN apk upgrade --no-cache && apk add --update --no-cache \
+      vim \
+      mysql-client \
+      mysql-dev \
+      nodejs \
+      ruby-json \
+      tzdata \
+      yaml \
+      imagemagick && \
+    apk add --update --no-cache --virtual=build-dependencies \
+      build-base \
+      ca-certificates \
+      curl-dev \
+      linux-headers \
+      libxml2-dev \
+      libxslt-dev \
+      ruby-dev \
+      yaml-dev \
+      python2 \
+      zlib-dev && \
+    gem install bundler && bundle install -j4 && \
     apk del build-dependencies && \
     rm -rf /usr/bin/mysql*
 

@@ -1,23 +1,36 @@
-FROM ruby:latest
+FROM ruby:alpine
 MAINTAINER Shiromegane
 
 ENV LANG C.UTF-8
 ENV BUILD_PATH /tmp
 ENV ROOT_PATH /app
 
-RUN apt-get update -qq && apt-get install -y build-essential \
-        mysql-client \
-        nodejs \
-        libxml2 \
-        libxml2-dev \
-        libxslt1-dev \
-        zlib1g \
-        zlib1g-dev \
-        && apt-get clean
-
 WORKDIR $BUILD_PATH
 COPY Gemfile $BUILD_PATH/Gemfile
 COPY Gemfile.lock $BUILD_PATH/Gemfile.lock
-RUN bundle install -j4
+
+RUN apk upgrade --no-cache && apk add --update --no-cache \
+      vim \
+      mysql-client \
+      mysql-dev \
+      nodejs \
+      ruby-json \
+      tzdata \
+      yaml \
+      imagemagick && \
+    apk add --update --no-cache --virtual=build-dependencies \
+      build-base \
+      ca-certificates \
+      curl-dev \
+      linux-headers \
+      libxml2-dev \
+      libxslt-dev \
+      ruby-dev \
+      yaml-dev \
+      python2 \
+      zlib-dev && \
+    gem install bundler && bundle install -j4 && \
+    apk del build-dependencies && \
+    rm -rf /usr/bin/mysql*
 
 WORKDIR $ROOT_PATH
