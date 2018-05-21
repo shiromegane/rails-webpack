@@ -3,12 +3,12 @@
 ## 初回のみ
 ### 1.rails new
 ```
-docker-compose run --rm app rails new . --force --database=mysql --skip-bundle
+docker-compose run --rm app rails new . -f -S -J -d mysql -T -G -B --webpack
 ```
 
 ### 2.database.ymlをコピー
 ```
-cp .containers/rails/config/database.yml rails/config/database.yml
+cp .containers/app/config/database.yml application/config/database.yml
 ```
 
 ### 3.DBを作る

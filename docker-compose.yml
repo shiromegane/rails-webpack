@@ -1,12 +1,12 @@
 version: '3'
 services:
   db:
-    container_name: rails_mysql
-    build: .containers/mysql
+    container_name: rails_db
+    build: .containers/db
     image: rails_db:latest
     volumes:
-      - .containers/mysql/data:/var/lib/mysql
-      - .containers/mysql/log:/var/log/mysql
+      - .containers/.volumes/var/lib/mysql:/var/lib/mysql
+      - .containers/.volumes/var/log/mysql:/var/log/mysql
     ports:
       - 3306:3306
     environment:
@@ -14,8 +14,8 @@ services:
     tty: true
     stdin_open: true
   kvs:
-    container_name: rails_redis
-    build: .containers/redis
+    container_name: rails_kvs
+    build: .containers/kvs
     image: rails_kvs:latest
     ports:
       - 6379:6379
@@ -23,7 +23,7 @@ services:
     stdin_open: true
   app:
     container_name: rails_app
-    build: .containers/rails
+    build: .containers/app
     image: rails_app:latest
     expose:
       - 3000
@@ -32,13 +32,15 @@ services:
     depends_on:
       - db
       - kvs
+      - webpack
     links:
       - db
       - db:database
       - db:mysql
+      - kvs
       - kvs:redis
     volumes:
-      - ./rails:/app
+      - ./application:/app
     environment:
       APP_DB_COLLATION: utf8mb4_bin
       APP_DB_ENCODING: utf8mb4
@@ -57,10 +59,10 @@ services:
       - 9.9.9.9
     tty: true
     stdin_open: true
-    command: bundle exec rails s -b 0
+#    command: bundle exec rails s -b 0
   web:
-    container_name: rails_nginx
-    build: .containers/nginx
+    container_name: rails_web
+    build: .containers/web
     image: rails_web:latest
     ports:
       - 80:80
@@ -70,7 +72,7 @@ services:
     links:
       - app
     volumes:
-      - .containers/nginx/log:/var/log/nginx
+      - .containers/.volumes/var/log/nginx:/var/log/nginx
     dns:
       - 1.1.1.1
       - 1.0.0.1
@@ -78,3 +80,24 @@ services:
       - 9.9.9.9
     tty: true
     stdin_open: true
+  webpack:
+    container_name: rails_webpack
+    build: .containers/webpack
+    image: rails_webpack:latest
+    ports:
+      - 8080:8080
+#    depends_on:
+#      - app
+#    links:
+#      - app
+    volumes:
+      - ./application:/app
+      - .containers/webpack/config.js:/app/config/webpack/config.js
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
+      - 8.8.8.8
+      - 9.9.9.9
+    tty: true
+    stdin_open: true
+    command: yarn run webpack-dev-server --config config/webpack/config.js

@@ -1,6 +1,7 @@
 FROM ruby:alpine
 MAINTAINER Shiromegane
 
+ENV TZ=Asia/Tokyo
 ENV LANG C.UTF-8
 ENV BUILD_PATH /tmp
 ENV ROOT_PATH /app
@@ -11,14 +12,16 @@ COPY Gemfile.lock $BUILD_PATH/Gemfile.lock
 
 RUN apk upgrade --no-cache && apk add --update --no-cache \
       vim \
-      mysql-client \
       mysql-dev \
+      libidn-dev \
       nodejs \
       ruby-json \
       tzdata \
       yaml \
+      ffmpeg \
       imagemagick && \
     apk add --update --no-cache --virtual=build-dependencies \
+      git \
       build-base \
       ca-certificates \
       curl-dev \
@@ -29,8 +32,12 @@ RUN apk upgrade --no-cache && apk add --update --no-cache \
       yaml-dev \
       python2 \
       zlib-dev && \
-    gem install bundler && bundle install -j4 && \
+    npm install -g yarn && \
+    gem install bundler && \
+    bundle install -j4 && \
     apk del build-dependencies && \
     rm -rf /usr/bin/mysql*
 
 WORKDIR $ROOT_PATH
+
+CMD ["bundle", "exec", "rails", "s", "-b", "0"]

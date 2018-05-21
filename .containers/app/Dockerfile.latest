@@ -21,3 +21,5 @@ COPY Gemfile.lock $BUILD_PATH/Gemfile.lock
 RUN bundle install -j4
 
 WORKDIR $ROOT_PATH
+
+CMD ["bundle", "exec", "rails", "s", "-b", "0"]

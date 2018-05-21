@@ -1,0 +1,128 @@
+source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+ruby '2.5.1'
+
+gem 'rails'
+gem 'mysql2'
+gem 'puma'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'webpacker'
+gem 'coffee-rails'
+gem 'turbolinks'
+gem 'jbuilder'
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'faraday'
+gem 'sidekiq'
+gem 'slack-notifier'
+
+gem 'bcrypt'
+gem 'mini_magick'
+gem 'capistrano-rails', group: :development
+gem 'bootsnap'
+
+gem 'gon'
+gem 'haml-rails'
+gem 'hamlit'
+gem 'meta-tags'
+gem 'rack-user_agent'
+gem 'kaminari'
+# =========================================
+
+# controllerに関連する部分
+gem 'action_args' # actionの引数にパラメータを渡すやつ
+
+# assets:precompileあたりに関係する
+# =========================================
+gem 'js-routes'
+# =========================================
+
+# modelに関連する部分
+# =========================================
+gem 'active_hash'
+gem 'active_attr'
+gem 'counter_culture'
+# =========================================
+
+# ログインロジック
+# =========================================
+gem 'sorcery'                 # 近頃はやりのログイン管理
+gem 'omniauth'                # oauthログインの本体
+gem 'omniauth-twitter'       # twitterと連携
+gem 'omniauth-instagram'      # instagramと連携
+gem 'omniauth-facebook'      # facebookと連携
+gem 'omniauth-google-oauth2' # gmailと連携
+gem 'twitter', '6.1.0'
+# =========================================
+
+gem 'twitter-text' # twitterの投稿可能文字数を確認できる
+
+# ファイルのアップロードに関係する部分
+# =========================================
+gem 'fog'                             # ObjectStorage対応
+gem 'carrierwave'
+gem 'mini_magick'                     # 画像のサムネイル生成を柔軟に（使ってないけど一応入れる）
+gem 'remotipart'                      # ajaxでファイルアップロードするのに必要
+# =========================================
+
+# タスク自動実行
+# =========================================
+gem 'whenever'
+#  =========================================
+
+# 翻訳
+# =========================================
+gem 'i18n-js'
+gem 'enum_help'
+# =========================================
+
+
+
+
+group :development, :test do
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails'
+  gem 'better_errors'             # エラー画面を整形
+  gem 'binding_of_caller'         # エラー画面でコンソールを表示
+  gem 'bullet'                    # N+1問題の監視
+  gem 'pry-rails'                 # コンソールでpryを使えるように
+  gem 'pry-byebug'                # pryを拡張
+  gem 'letter_opener'             # メールの確認
+  gem 'letter_opener_web'         # ブラウザから一覧で使えるように
+  gem 'rack-mini-profiler'        # 簡易的なパフォーマンス計測
+  gem 'dotenv-rails'              # 環境変数用、本番では絶対に使わないこと
+  gem 'webmock'
+  gem 'vcr'
+  gem 'rails-controller-testing'
+  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers', branch: 'rails-5'
+  gem 'timecop'
+  gem 'simplecov'
+  gem 'i18n-tasks'
+end
+
+group :development do
+  gem 'listen'
+  gem 'web-console'
+  gem 'spring'
+  gem 'spring-watcher-listen'
+  gem 'foreman'
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-puma'
+  gem 'capistrano-bundler'
+  gem 'capistrano-sidekiq'
+  gem 'rubocop-rails'
+  gem 'html2haml', require: false
+end
+
+group :test do
+  gem 'capybara', '>= 2.15', '< 4.0'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
+end
+
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
