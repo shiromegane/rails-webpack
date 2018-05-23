@@ -1,7 +1,7 @@
 FROM node:alpine
 MAINTAINER Shiromegane
 
-ENV ROOT_PATH /application
+ENV ROOT_PATH /webpack
 ENV WEBPACK_CONFIG_PATH $ROOT_PATH/config/webpack
 ENV WEBPACK_CONFIG_FILE $WEBPACK_CONFIG_PATH/config.js
 ENV NODE_MODULES_PATH $ROOT_PATH/node_modules

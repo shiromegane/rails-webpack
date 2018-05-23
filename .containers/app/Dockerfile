@@ -1,11 +1,11 @@
 FROM ruby:alpine
 MAINTAINER Shiromegane
 
-ENV TZ=Asia/Tokyo
-ENV LANG C.UTF-8
-ENV BUILD_PATH /tmp
-ENV ROOT_PATH /app
-ENV BUNDLE_PATH $BUILD_PATH/vendor/bundle
+ENV TZ=Asia/Tokyo \
+    LANG=C.UTF-8 \
+    ROOT_PATH=/rails_app \
+    BUILD_PATH=/tmp \
+    BUNDLE_PATH=$BUILD_PATH/vendor/bundle
 
 WORKDIR $BUILD_PATH
 COPY Gemfile $BUILD_PATH/Gemfile

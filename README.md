@@ -3,7 +3,6 @@
 ## 初回のみ
 ### 1.rails new
 ```
-docker-compose run --rm app rails new . -f -S -J -d mysql -T -G -B
 docker-compose run --rm app rails new . -f -S -J -d mysql -T -G -B --webpack
 ```
 

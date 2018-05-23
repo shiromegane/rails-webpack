@@ -32,7 +32,7 @@ services:
     depends_on:
       - db
       - kvs
-      - webpack
+      #- webpack
     links:
       - db
       - db:database
@@ -40,7 +40,7 @@ services:
       - kvs
       - kvs:redis
     volumes:
-      - ./application:/app
+      - ./application:/rails_app
     environment:
       APP_DB_COLLATION: utf8mb4_bin
       APP_DB_ENCODING: utf8mb4
@@ -80,23 +80,23 @@ services:
       - 9.9.9.9
     tty: true
     stdin_open: true
-  webpack:
-    container_name: rails_webpack
-    build: .containers/webpack
-    image: rails_webpack:latest
-    ports:
-      - 8080:8080
-    expose:
-      - 8080
-    volumes:
-      - ./application/app/frontend:/application/app/frontend
-      - ./application/config/webpack:/application/config/webpack
-      - ./application/public:/application/public
-    dns:
-      - 1.1.1.1
-      - 1.0.0.1
-      - 8.8.8.8
-      - 9.9.9.9
-    tty: true
-    stdin_open: true
-    command: yarn run dev
+#  webpack:
+#    container_name: rails_webpack
+#    build: .containers/webpack
+#    image: rails_webpack:latest
+#    ports:
+#      - 8080:8080
+#    expose:
+#      - 8080
+#    volumes:
+#      - ./application/app/frontend:/application/app/frontend
+#      - ./application/config/webpack:/application/config/webpack
+#      - ./application/public:/application/public
+#    dns:
+#      - 1.1.1.1
+#      - 1.0.0.1
+#      - 8.8.8.8
+#      - 9.9.9.9
+#    tty: true
+#    stdin_open: true
+#    command: yarn run dev

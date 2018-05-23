@@ -5,7 +5,9 @@
 .volumes/var/log/mysql/*
 !.volumes/var/log/mysql/.gitkeep
 .volumes/node_modules/*
-/node_modules/
+application/node_modules
+application/tmp/*
+!application/tmp/*.keep
 !.volumes/node_modules/.gitkeep
 *.bk
 *.log
