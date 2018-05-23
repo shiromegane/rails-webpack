@@ -32,7 +32,7 @@ services:
     depends_on:
       - db
       - kvs
-      #- webpack
+      - webpack
     links:
       - db
       - db:database
@@ -41,6 +41,7 @@ services:
       - kvs:redis
     volumes:
       - ./application:/rails_app
+      - ~/.ssh/jiraffe:/root/.ssh
     environment:
       APP_DB_COLLATION: utf8mb4_bin
       APP_DB_ENCODING: utf8mb4
