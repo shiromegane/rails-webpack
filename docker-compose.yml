@@ -5,8 +5,8 @@ services:
     build: .containers/db
     image: rails_db:latest
     volumes:
-      - .containers/.volumes/var/lib/mysql:/var/lib/mysql
-      - .containers/.volumes/var/log/mysql:/var/log/mysql
+      - .volumes/var/lib/mysql:/var/lib/mysql
+      - .volumes/var/log/mysql:/var/log/mysql
     ports:
       - 3306:3306
     environment:
@@ -50,7 +50,7 @@ services:
       APP_DB_NAME: app_develop
       APP_DB_USERNAME: root
       APP_DB_PASSWORD: password
-      APP_TEST_DB_NAME: app_develop
+      APP_TEST_DB_NAME: app_test
       RAILS_ENV: development
     dns:
       - 1.1.1.1
@@ -59,7 +59,7 @@ services:
       - 9.9.9.9
     tty: true
     stdin_open: true
-#    command: bundle exec rails s -b 0
+    command: bundle exec rails s -b 0
   web:
     container_name: rails_web
     build: .containers/web
@@ -72,7 +72,7 @@ services:
     links:
       - app
     volumes:
-      - .containers/.volumes/var/log/nginx:/var/log/nginx
+      - .volumes/var/log/nginx:/var/log/nginx
     dns:
       - 1.1.1.1
       - 1.0.0.1
@@ -86,13 +86,12 @@ services:
     image: rails_webpack:latest
     ports:
       - 8080:8080
-#    depends_on:
-#      - app
-#    links:
-#      - app
+    expose:
+      - 8080
     volumes:
-      - ./application:/app
-      - .containers/webpack/config.js:/app/config/webpack/config.js
+      - ./application/app/frontend:/application/app/frontend
+      - ./application/config/webpack:/application/config/webpack
+      - ./application/public:/application/public
     dns:
       - 1.1.1.1
       - 1.0.0.1
@@ -100,4 +99,4 @@ services:
       - 9.9.9.9
     tty: true
     stdin_open: true
-    command: yarn run webpack-dev-server --config config/webpack/config.js
+    command: yarn run dev

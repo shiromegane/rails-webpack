@@ -10,18 +10,12 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'webpacker'
 gem 'coffee-rails'
-gem 'turbolinks'
 gem 'jbuilder'
 gem 'redis'
 gem 'redis-namespace'
 gem 'redis-rails'
-gem 'faraday'
-gem 'sidekiq'
-gem 'slack-notifier'
-
 gem 'bcrypt'
 gem 'mini_magick'
-gem 'capistrano-rails', group: :development
 gem 'bootsnap'
 
 gem 'gon'
@@ -30,57 +24,13 @@ gem 'hamlit'
 gem 'meta-tags'
 gem 'rack-user_agent'
 gem 'kaminari'
-# =========================================
-
-# controllerに関連する部分
 gem 'action_args' # actionの引数にパラメータを渡すやつ
-
-# assets:precompileあたりに関係する
-# =========================================
-gem 'js-routes'
-# =========================================
-
-# modelに関連する部分
-# =========================================
 gem 'active_hash'
 gem 'active_attr'
 gem 'counter_culture'
-# =========================================
 
-# ログインロジック
-# =========================================
-gem 'sorcery'                 # 近頃はやりのログイン管理
-gem 'omniauth'                # oauthログインの本体
-gem 'omniauth-twitter'       # twitterと連携
-gem 'omniauth-instagram'      # instagramと連携
-gem 'omniauth-facebook'      # facebookと連携
-gem 'omniauth-google-oauth2' # gmailと連携
-gem 'twitter', '6.1.0'
-# =========================================
-
-gem 'twitter-text' # twitterの投稿可能文字数を確認できる
-
-# ファイルのアップロードに関係する部分
-# =========================================
-gem 'fog'                             # ObjectStorage対応
-gem 'carrierwave'
-gem 'mini_magick'                     # 画像のサムネイル生成を柔軟に（使ってないけど一応入れる）
-gem 'remotipart'                      # ajaxでファイルアップロードするのに必要
-# =========================================
-
-# タスク自動実行
-# =========================================
-gem 'whenever'
-#  =========================================
-
-# 翻訳
-# =========================================
 gem 'i18n-js'
 gem 'enum_help'
-# =========================================
-
-
-
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

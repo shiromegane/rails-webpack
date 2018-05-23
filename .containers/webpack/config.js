@@ -1,44 +1,76 @@
 const path = require('path')
-const appRootPath = path.resolve(__dirname, '../../')
-const entryPath = path.resolve(appRootPath, 'app/frontend/')
-const outputPath = path.resolve(appRootPath, 'public/')
+const webpack = require('webpack')
+
+const HtmlWebPackPlugin = require("html-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+
+// const {join, resolve} = require('path')
+
+const rootPath = path.resolve(__dirname, '..', '..')
+const entryPath = path.resolve(rootPath, 'app', 'frontend')
+const outputPath = path.resolve(rootPath, 'public')
+const configPath = path.resolve(__dirname)
+const loaderPath = path.resolve(configPath, 'loaders')
+const {sync} = require('glob')
+const ETP = require("extract-text-webpack-plugin")
+
 const config = {
-  entry: path.resolve(entryPath, 'entry.js'),
-  output: {
-    path: path.resolve(outputPath),
-    filename: 'bundle.js',
+  mode: 'development',
+  entry: {
+    application: [
+      path.resolve(entryPath, 'entry.js')
+    ]
   },
+  output: {
+    filename: '[name].js',
+    path: path.resolve(outputPath),
+    publicPath: '/',
+  },
+
   module: {
-    preLoaders: [
+    rules: [
+      // {test: /\.css$/, loader: ETP.extract("style-loader", "css-loader")},
       {
         test: /\.js$/,
-        loader: 'eslint-loader',
         exclude: /node_modules/,
+        use: [
+          {loader: 'babel-loader'},
+          {loader: "eslint-loader"},
+        ]
       },
-    ],
-    loaders: [
+      // {test: /\.js$/, exclude: /node_modules/, use: {loader: "eslint-loader"}},
       {
-        test: /\.js$/,
-        loader: 'babel',
-        exclude: /node_modules/,
+        test: /\.html$/,
+        use: [
+          {loader: "html-loader", options: {minimize: true}}
+        ]
       },
       {
         test: /\.css$/,
-        loaders: ['style', 'css?modules'],
-      },
-      {
-        test: /\.json$/,
-        loader: 'json',
-      },
-    ],
+        use: [MiniCssExtractPlugin.loader, "css-loader"]
+      }
+    ]
+    // rules: sync(join(loaderPath, '*.js')).map(loader => require(loader)),
   },
-  eslint: {
-    configFile: './.eslintrc.yaml',
-    fix: true,
-  },
-  plugins: [
 
+  plugins: [
+    // new HtmlWebPackPlugin({
+    //   template: "./src/index.html",
+    //   filename: "./index.html"
+    // }),
+    // new MiniCssExtractPlugin({
+    //   filename: "[name].css",
+    //   chunkFilename: "[id].css"
+    // }),
+    // new webpack.DefinePlugin({
+    //   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    // }),
+    // new ETP("styles.css") // styles.cssに抜き出す。
   ],
+
+  // resolve: {
+  //   extensions: ['.js', '.jsx'],
+  // },
 }
 
 module.exports = config

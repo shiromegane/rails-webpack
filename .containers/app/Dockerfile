@@ -5,6 +5,7 @@ ENV TZ=Asia/Tokyo
 ENV LANG C.UTF-8
 ENV BUILD_PATH /tmp
 ENV ROOT_PATH /app
+ENV BUNDLE_PATH $BUILD_PATH/vendor/bundle
 
 WORKDIR $BUILD_PATH
 COPY Gemfile $BUILD_PATH/Gemfile
@@ -34,7 +35,9 @@ RUN apk upgrade --no-cache && apk add --update --no-cache \
       zlib-dev && \
     npm install -g yarn && \
     gem install bundler && \
-    bundle install -j4 && \
+    bundle config path $BUNDLE_PATH && \
+    bundle config jobs 4 && \
+    bundle install && \
     apk del build-dependencies && \
     rm -rf /usr/bin/mysql*
 
