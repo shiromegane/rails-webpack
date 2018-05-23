@@ -7,3 +7,5 @@
 .volumes/node_modules/*
 /node_modules/
 !.volumes/node_modules/.gitkeep
+*.bk
+*.log
