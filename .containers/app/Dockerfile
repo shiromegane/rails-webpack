@@ -3,9 +3,9 @@ MAINTAINER Shiromegane
 
 ENV TZ=Asia/Tokyo \
     LANG=C.UTF-8 \
-    ROOT_PATH=/rails \
-    BUILD_PATH=/tmp \
-    BUNDLE_PATH=$BUILD_PATH/vendor/bundle
+    ROOT_PATH=/app \
+    BUILD_PATH=/tmp
+ENV BUNDLE_PATH=$BUILD_PATH/bundle \
     BUNDLE_GEMFILE=$BUILD_PATH/Gemfile
 
 WORKDIR $BUILD_PATH
@@ -36,7 +36,7 @@ RUN apk upgrade --no-cache && apk add --update --no-cache \
       zlib-dev && \
     npm install -g yarn && \
     gem install bundler && \
-#    bundle config path $BUNDLE_PATH && \
+    bundle config path $BUNDLE_PATH && \
     bundle config jobs 4 && \
     bundle install && \
     apk del build-dependencies && \

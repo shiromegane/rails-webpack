@@ -1,12 +1,9 @@
 .volumes/var/lib/mysql/*
 !.volumes/var/lib/mysql/.gitkeep
-.volumes/var/log/nginx/*
-!.volumes/var/log/nginx/.gitkeep
-.volumes/var/log/mysql/*
-!.volumes/var/log/mysql/.gitkeep
 .volumes/node_modules/*
 application/tmp/*
 !application/tmp/*.keep
 !.volumes/node_modules/.gitkeep
 *.log
-.env
+*.env
+/node_modules/

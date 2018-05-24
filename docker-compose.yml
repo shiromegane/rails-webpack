@@ -26,6 +26,7 @@ services:
     container_name: rails_app
     build: .containers/app
     image: rails_app:latest
+    env_file: rails.env
     expose:
       - 3000
     depends_on:
@@ -38,9 +39,9 @@ services:
       - db:mysql
       - kvs
       - kvs:redis
-      - webpack
+#      - webpack
     volumes:
-      - ./application:/rails
+      - ./application:/app
       - ~/.ssh:/root/.ssh
     dns:
       - 1.1.1.1
@@ -61,8 +62,6 @@ services:
       - app
     links:
       - app
-    volumes:
-      - .volumes/var/log/nginx:/var/log/nginx
     dns:
       - 1.1.1.1
       - 1.0.0.1
