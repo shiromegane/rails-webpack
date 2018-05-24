@@ -6,9 +6,10 @@ services:
     image: rails_db:latest
     volumes:
       - .volumes/var/lib/mysql:/var/lib/mysql
-      - .volumes/var/log/mysql:/var/log/mysql
     ports:
       - 3306:3306
+    expose:
+      - 3306
     environment:
       MYSQL_ROOT_PASSWORD: password
     tty: true
@@ -17,8 +18,8 @@ services:
     container_name: rails_kvs
     build: .containers/kvs
     image: rails_kvs:latest
-    ports:
-      - 6379:6379
+    expose:
+      - 6379
     tty: true
     stdin_open: true
   app:
@@ -27,32 +28,20 @@ services:
     image: rails_app:latest
     expose:
       - 3000
-    ports:
-      - 3000:3000
     depends_on:
       - db
       - kvs
-      - webpack
+#      - webpack
     links:
       - db
       - db:database
       - db:mysql
       - kvs
       - kvs:redis
+      - webpack
     volumes:
-      - ./application:/rails_app
-      - ~/.ssh/jiraffe:/root/.ssh
-    environment:
-      APP_DB_COLLATION: utf8mb4_bin
-      APP_DB_ENCODING: utf8mb4
-      APP_DB_CHARSET: utf8mb4
-      APP_DB_HOST: db
-      APP_DB_PORT: 3306
-      APP_DB_NAME: app_develop
-      APP_DB_USERNAME: root
-      APP_DB_PASSWORD: password
-      APP_TEST_DB_NAME: app_test
-      RAILS_ENV: development
+      - ./application:/rails
+      - ~/.ssh:/root/.ssh
     dns:
       - 1.1.1.1
       - 1.0.0.1
@@ -81,24 +70,24 @@ services:
       - 9.9.9.9
     tty: true
     stdin_open: true
-  webpack:
-    container_name: rails_webpack
-    build: .containers/webpack
-    image: rails_webpack:latest
-    ports:
-      - 8080:8080
-    expose:
-      - 8080
-    volumes:
-      - .volumes/node_modules:/
-      - ./application/app/frontend:/application/app/frontend
-      - ./application/config/webpack:/application/config/webpack
-      - ./application/public:/application/public
-    dns:
-      - 1.1.1.1
-      - 1.0.0.1
-      - 8.8.8.8
-      - 9.9.9.9
-    tty: true
-    stdin_open: true
-    command: yarn run dev
+#  webpack:
+#    container_name: rails_webpack
+#    build: .containers/webpack
+#    image: rails_webpack:latest
+#    ports:
+#      - 8080:8080
+#    expose:
+#      - 8080
+#    volumes:
+#      - .volumes/node_modules:/
+#      - ./application/app/frontend:/application/app/frontend
+#      - ./application/config/webpack:/application/config/webpack
+#      - ./application/public:/application/public
+#    dns:
+#      - 1.1.1.1
+#      - 1.0.0.1
+#      - 8.8.8.8
+#      - 9.9.9.9
+#    tty: true
+#    stdin_open: true
+#    command: yarn run dev

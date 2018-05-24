@@ -1,4 +1,6 @@
 {
+  "name": "webpack",
+  "private": true,
   "dependencies": {
     "autoprefixer": "^8.5.0",
     "axios": "^0.18.0",
