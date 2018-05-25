@@ -3,7 +3,12 @@
 .volumes/node_modules/*
 application/tmp/*
 !application/tmp/*.keep
-!.volumes/node_modules/.gitkeep
+#.volumes/node_modules/*
+#!.volumes/node_modules/.gitkeep
+#!.volumes/bundle/.gitkeep
 *.log
 *.env
+/bundle/
 /node_modules/
+!/bundle/.gitkeep
+!/node_modules/.gitkeep
