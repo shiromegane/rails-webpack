@@ -19,6 +19,7 @@
     "postcss-loader": "^2.1.5",
     "prettier": "^1.12.1",
     "pug": "^2.0.3",
+    "rails-ujs",
     "raw-loader": "^0.5.1",
     "vue": "^2.5.16",
     "vue-cli": "^2.9.3",
