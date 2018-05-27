@@ -4,14 +4,10 @@ MAINTAINER Shiromegane
 ENV TZ=Asia/Tokyo \
     LANG=C.UTF-8 \
     ROOT_PATH=/app \
-    BUILD_PATH=/tmp
-ENV BUNDLE_PATH=$BUILD_PATH/bundle \
-    BUNDLE_JOBS=16
-    BUNDLE_GEMFILE=$BUILD_PATH/Gemfile
-
-WORKDIR $BUILD_PATH
-COPY Gemfile $BUILD_PATH/Gemfile
-COPY Gemfile.lock $BUILD_PATH/Gemfile.lock
+    BUILD_PATH=/tmp \
+    BUNDLE_PATH=/bundle \
+    BUNDLE_JOBS=16 \
+    BUNDLE_GEMFILE=/app/Gemfile
 
 RUN apk upgrade --no-cache && apk add --update --no-cache \
       vim \
@@ -22,8 +18,7 @@ RUN apk upgrade --no-cache && apk add --update --no-cache \
       tzdata \
       yaml \
       ffmpeg \
-      imagemagick && \
-    apk add --update --no-cache --virtual=build-dependencies \
+      imagemagick \
       git \
       build-base \
       ca-certificates \
@@ -33,16 +28,12 @@ RUN apk upgrade --no-cache && apk add --update --no-cache \
       libxslt-dev \
       ruby-dev \
       yaml-dev \
-      python2 \
       zlib-dev && \
     npm install -g yarn && \
     gem install bundler && \
+    gem update bundler && \
     bundle config path $BUNDLE_PATH && \
     bundle config jobs $BUNDLE_JOBS && \
-    bundle install && \
-    apk del build-dependencies && \
     rm -rf /usr/bin/mysql*
 
 WORKDIR $ROOT_PATH
-
-CMD ["bundle", "exec", "rails", "s", "-b", "0"]

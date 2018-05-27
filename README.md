@@ -1,7 +1,13 @@
-# 初回のみ
-## 1. Railsアプリケーション新規作成
-```docker
-docker-compose run --rm app rails new . -d mysql -f -BGSJT --skip-gemfile --skip-coffee --skip-turbolinks --skip-system-test
+# How to use
+
+## 1. bundle install
+```
+docker-compose run --rm app bundle install
+```
+
+## 1-1. Railsアプリケーション新規作成（※初回のみ）
+```
+docker-compose run --rm app bundle exec rails new . -d mysql -f -BGSJT --skip-gemfile --skip-coffee --skip-turbolinks --skip-system-test
 ```
 ### オプション詳細
 - -d mysql
@@ -23,23 +29,22 @@ docker-compose run --rm app rails new . -d mysql -f -BGSJT --skip-gemfile --skip
 - --skip-system-test
   * system testを無効
 
-## 2. database.ymlをコピー
+## 1-2. database.ymlをコピー（※初回のみ）
 ```
 cp .containers/app/config/database.yml application/config/database.yml
 ```
 
-## 3. envファイルをコピーして適宜編集
+## 1-3. envファイルをコピーして適宜編集（※初回のみ）
 ```
 cp rails.env.default rails.env
 ```
 
-## 4. DBを作る
-```docker
+## 1-4. DBを作る（※初回のみ）
+```
 docker-compose run --rm app rake db:create
 ```
 
-# 初期設定後
-## 起動
-```docker
+## 2. 起動
+```
 docker-compose up -d
 ```

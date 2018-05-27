@@ -1,34 +1,37 @@
 version: '3'
 services:
   db:
+    image: mysql:5
     container_name: rails_db
-    build: .containers/db
-    image: rails_db:latest
-    volumes:
-      - .volumes/var/lib/mysql:/var/lib/mysql
-    ports:
-      - 3306:3306
-    expose:
-      - 3306
+    tty: true
+    stdin_open: true
     environment:
       MYSQL_ROOT_PASSWORD: password
+    expose:
+      - 3306
+    ports:
+      - 3306:3306
+    volumes:
+      - .docker/volumes/var/lib/mysql:/var/lib/mysql
+      - .docker/volumes/etc/mysql/mysql.cnf:/etc/mysql/mysql.cnf
+  kvs:
+    image: redis:alpine
+    container_name: rails_kvs
     tty: true
     stdin_open: true
-  kvs:
-    container_name: rails_kvs
-    build: .containers/kvs
-    image: rails_kvs:latest
     expose:
       - 6379
+  app:
+    build: .docker/containers/app
+    image: rails_app:latest
+    container_name: rails_app
+    env_file: app.env
     tty: true
     stdin_open: true
-  app:
-    container_name: rails_app
-    build: .containers/app
-    image: rails_app:latest
-    env_file: rails.env
     expose:
       - 3000
+    ports:
+      - 3000:3000
     depends_on:
       - db
       - kvs
@@ -40,21 +43,23 @@ services:
       - kvs
       - kvs:redis
 #      - webpack
-    volumes:
-      - ./application:/app
-      - ~/.ssh:/root/.ssh
     dns:
       - 1.1.1.1
       - 1.0.0.1
       - 8.8.8.8
       - 9.9.9.9
+    volumes:
+      - ./application:/app:cached
+      - bundle:/bundle
+      - ~/.ssh:/root/.ssh
+    command: sh -c "rm -f tmp/pids/server.pid && bundle install && bundle exec rails s -b 0"
+  web:
+    build: .docker/containers/web
+    image: rails_web:latest
+#    image: nginx:alpine
+    container_name: rails_web
     tty: true
     stdin_open: true
-    command: bundle exec rails s -b 0
-  web:
-    container_name: rails_web
-    build: .containers/web
-    image: rails_web:latest
     ports:
       - 80:80
       - 443:443
@@ -67,26 +72,29 @@ services:
       - 1.0.0.1
       - 8.8.8.8
       - 9.9.9.9
-    tty: true
-    stdin_open: true
+    volumes:
+      - .docker/volumes/etc/nginx/conf.d/app.conf:/etc/nginx/conf.d/app.conf
+#    command: nginx -g "daemon off;"
 #  webpack:
-#    container_name: rails_webpack
 #    build: .containers/webpack
 #    image: rails_webpack:latest
-#    ports:
-#      - 8080:8080
+#    container_name: rails_webpack
+#    tty: true
+#    stdin_open: true
 #    expose:
 #      - 8080
-#    volumes:
-#      - .volumes/node_modules:/
-#      - ./application/app/frontend:/application/app/frontend
-#      - ./application/config/webpack:/application/config/webpack
-#      - ./application/public:/application/public
+#    ports:
+#      - 8080:8080
 #    dns:
 #      - 1.1.1.1
 #      - 1.0.0.1
 #      - 8.8.8.8
 #      - 9.9.9.9
-#    tty: true
-#    stdin_open: true
+#    volumes:
+#      - .volumes/node_modules:/
+#      - ./application/app/frontend:/application/app/frontend
+#      - ./application/config/webpack:/application/config/webpack
+#      - ./application/public:/application/public
 #    command: yarn run dev
+volumes:
+  bundle:
