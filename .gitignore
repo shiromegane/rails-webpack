@@ -8,3 +8,4 @@
 *.env
 application/tmp/*
 !application/tmp/*.keep
+/client/node_modules/

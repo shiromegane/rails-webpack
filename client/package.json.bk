@@ -1,0 +1,92 @@
+{
+  "private": true,
+  "dependencies": {
+    "assets-webpack-plugin": "latest",
+    "autoprefixer": "latest",
+    "axios": "latest",
+    "babel-cli": "latest",
+    "babel-core": "latest",
+    "babel-loader": "latest",
+    "babel-polyfill": "latest",
+    "babel-preset-env": "latest",
+    "babel-preset-stage-0": "latest",
+    "babel-preset-vue": "latest",
+    "clean-webpack-plugin": "latest",
+    "concurrently": "latest",
+    "css-loader": "latest",
+    "dotenv": "latest",
+    "file-loader": "latest",
+    "html-webpack-plugin": "latest",
+    "mini-css-extract-plugin": "latest",
+    "node-sass": "latest",
+    "optimize-css-assets-webpack-plugin": "latest",
+    "postcss-loader": "latest",
+    "prettier": "latest",
+    "pug": "latest",
+    "rails-ujs": "latest",
+    "raw-loader": "latest",
+    "sass-loader": "latest",
+    "style-loader": "latest",
+    "uglifyjs-webpack-plugin": "latest",
+    "vue": "latest",
+    "vue-cli": "latest",
+    "vue-html-loader": "latest",
+    "vue-loader": "latest",
+    "vue-router": "latest",
+    "vue-style-loader": "latest",
+    "vue-template-compiler": "latest",
+    "vuex": "latest",
+    "webpack": "latest",
+    "webpack-cli": "latest",
+    "webpack-manifest-plugin": "latest",
+    "webpack-merge": "latest"
+  },
+  "devDependencies": {
+    "babel-eslint": "latest",
+    "babel-jest": "latest",
+    "eslint": "latest",
+    "eslint-config-prettier": "latest",
+    "eslint-config-prettier-standard": "latest",
+    "eslint-config-standard": "latest",
+    "eslint-loader": "latest",
+    "eslint-plugin-import": "latest",
+    "eslint-plugin-node": "latest",
+    "eslint-plugin-prettier": "latest",
+    "eslint-plugin-promise": "latest",
+    "eslint-plugin-standard": "latest",
+    "eslint-plugin-vue": "latest",
+    "husky": "latest",
+    "jest": "latest",
+    "jest-cli": "latest",
+    "jest-serializer-vue": "latest",
+    "lint-staged": "latest",
+    "nodemon": "latest",
+    "pre-commit": "latest",
+    "stylelint": "latest",
+    "stylelint-config-standard": "latest",
+    "vue-jest": "latest",
+    "webpack-babel-jest": "latest",
+    "webpack-dev-server": "latest"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production webpack --config config/common.js --colors",
+    "dev": "NODE_ENV=development webpack-dev-server --config config/common.js -d",
+    "test": "jest --coverage",
+    "testw": "jest --watch",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    ".:css": [
+      "prettier --write",
+      "stylelint --fix",
+      "git add"
+    ]
+  },
+  "pre-commit": [
+    "lint-staged"
+  ]
+}

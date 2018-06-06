@@ -1,0 +1,111 @@
+const path = require('path')
+
+// const webpack = require('webpack')
+const merge = require('webpack-merge')
+// const HtmlWebpackPlugin = require('html-webpack-plugin')
+// const CleanWebpackPlugin = require('clean-webpack-plugin')
+// const ManifestPlugin = require('webpack-manifest-plugin')
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+
+const envConfig = require(`./${process.env.NODE_ENV}.js`)
+const rootPath = path.resolve(__dirname, '..')
+const configPath = path.resolve(rootPath, 'config')
+const entryPath = path.resolve(rootPath, 'src')
+const outputPath = path.resolve(rootPath, 'www')
+
+module.exports = merge(envConfig, {
+  entry: {
+    app: path.resolve(entryPath, 'entry.js'),
+  },
+  // entry: path.join(entryPath, 'entry.js'),
+  output: {
+    filename: '[name].js',
+    path: outputPath,
+    publicPath: '/',
+  },
+  plugins: [
+    // new ManifestPlugin(),
+    // new MiniCssExtractPlugin({
+    //   filename: '[name].css',
+    // }),
+    // new CleanWebpackPlugin(['public']),
+  ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: 'styles',
+          test: /\.css$/,
+          chunks: 'all',
+          enforce: true,
+        },
+      },
+    },
+    // minimizer: [
+    //   new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: true }),
+    //   new OptimizeCSSAssetsPlugin({}),
+    // ],
+  },
+  resolve: {
+    alias: {
+      envConfig: resolve(configPath, `${process.env.NODE_ENV}.js`),
+    },
+  },
+  module: {
+    rules: [
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'eslint-loader',
+          },
+        ],
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [['env', { modules: false }]],
+            },
+          },
+        ],
+      },
+      {
+        test: /\.s?[ac]ss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ],
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader'],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: ['file-loader'],
+      },
+      {
+        test: /\.(csv|tsv)$/,
+        use: ['csv-loader'],
+      },
+      {
+        test: /\.vue/,
+        use: ['vue-loader'],
+      },
+      {
+        test: /\.xml$/,
+        use: ['xml-loader'],
+      },
+    ],
+  },
+})

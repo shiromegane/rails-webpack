@@ -1,0 +1,9 @@
+const path = require('path')
+const root = path.resolve(__dirname, '..', '..')
+const client = path.resolve(root, 'client')
+const config = path.resolve(client, 'config')
+const entry = path.resolve(client, 'src')
+const output = path.resolve(client, 'www')
+const environment = path.resolve(config, 'environment')
+const loader = path.resolve(config, 'loader')
+module.exports = { root, client, config, entry, output, environment, loader }

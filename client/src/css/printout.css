@@ -1,0 +1,153 @@
+.print-wrapper {
+    margin-top: 30px;
+}
+
+.print-wrapper h2 {
+    text-align: center;
+}
+
+.current-user-name {
+    margin: 10px 0;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+tr.company_holiday {
+    background-color: #F0F0FF;
+}
+tr.legal_holiday {
+    background-color: #FFF0F0;
+}
+
+.print-button {
+    text-align: center;
+    margin: 10px;
+}
+.attendance-list {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.attendance-list tr {
+    white-space: nowrap;
+}
+.attendance-list tr > * {
+    text-align: center;
+    border-right: 1px dotted #999;
+}
+.attendance-list tr > *.work_time {
+    border-right: none;
+}
+.attendance-list th {
+    background-color: #F0F4C3;
+}
+.attendance-list th.day,
+.attendance-list th.week {
+    width: 50px;
+}
+.attendance-list td {
+    vertical-align: middle;
+}
+
+.name, .client-info, small, .note, .total-time {
+    display: none;
+}
+
+
+@media print {
+    header.global, footer.global, nav.global, nav.breadcrumb, .print-button, .move-date, .workplace, .current-user-name { display: none; }
+    body, #global-wrapper, #content { overflow: visible; padding: 0; }
+    small { display: inline; }
+    .note { display: table-cell; border-left: 1px dotted #999; border-right: none !important; }
+
+
+    .tab-container {
+        display:none;
+    }
+
+    .print-wrapper {
+        top: 0;
+        left: 0;
+        width: 172mm !important;
+        height: 251mm !important;
+        page-break-after: always;
+        overflow: visible;
+        margin: 0 auto;
+    }
+    .print-wrapper h2 {
+        font-size: 20px;
+        text-align: left;
+    }
+    .print-wrapper h2 > p {
+        display: inline-block;
+        margin-left: 20px;
+    }
+    .name {
+        display: table;
+        border-bottom: 1px solid #999;
+        margin: 14px 0;
+    }
+    .name > * {
+        display: table-cell;
+        padding: 3px 8px 3px 3px;
+    }
+    .name > dd:after {
+        content: "印";
+        margin-left: 50px;
+        padding-right: 10px;
+    }
+    .client-info {
+        display: flex;
+        border: 2px solid #999;
+        width: 500px;
+        height: 50px;
+        margin-bottom: 14px;
+    }
+    .client-info > dl {
+        display: table;
+        height: 100%;
+    }
+    .client-info > dl:first-child {
+        border-right: 2px solid #999;
+        width: 340px;
+    }
+    .client-info > dl:first-child > dt {
+        width: 100px;
+    }
+    .client-info > dl:last-child > dd {
+        width: 50px;
+    }
+    .client-info > dl > * {
+        display: table-cell;
+        vertical-align: middle;
+        padding: 5px;
+    }
+    .client-info > dl > dt {
+        border-right: 1px solid #999;
+        text-align: center;
+    }
+    .attendance-list {
+        border: 2px solid #999;
+        margin: 0;
+    }
+    .attendance-list tr > * {
+        padding: 2.5px;
+    }
+    .total-time {
+        display: table;
+        margin-top: 10px;
+        border: 2px solid #999;
+        height: 30px;
+    }
+    .total-time > * {
+        display: table-cell;
+        padding: 5px;
+    }
+    .total-time > dt {
+        border-right: 1px solid #999;
+        width: 300px;
+    }
+    .total-time > dd {
+        padding: 0 20px;
+    }
+}
