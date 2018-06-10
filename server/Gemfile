@@ -1,0 +1,210 @@
+source 'https://rubygems.org'
+# source 'http://production.cf.rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+ruby '2.5.1'
+gem 'rails', '5.2.0'
+
+# ==============================
+# ミドルウェア関連
+# ------------------------------
+gem 'puma'
+gem 'faraday_middleware'
+# ==============================
+
+# ==============================
+# Controller関連
+# ------------------------------
+gem 'action_args'
+# ==============================
+
+# ==============================
+# View関連
+# ------------------------------
+gem 'meta-tags'
+gem 'hamlit'
+gem 'hamlit-rails'
+# ==============================
+
+# ==============================
+# DB/Model関連
+# ------------------------------
+gem 'mysql2', '~> 0.4.9'
+gem 'annotate'
+gem 'active_hash'
+gem 'counter_culture'
+gem 'activerecord-import'
+# ==============================
+
+# ==============================
+# フロントエンド関連
+# ------------------------------
+gem 'gon'
+gem 'js_rails_routes'
+gem 'sass-rails'
+gem 'uglifier'
+# ==============================
+
+# ==============================
+# JSON関連
+# ------------------------------
+gem 'jbuilder'
+# ==============================
+
+# ==============================
+# KVS関連
+# ------------------------------
+gem 'redis'
+gem 'redis-objects'
+gem 'redis-namespace'
+gem 'redis-rails'
+# ==============================
+
+# ==============================
+# ログイン/認証/暗号化関連
+# ------------------------------
+gem 'sorcery'
+gem 'oauth'
+gem 'oauth2'
+gem 'bcrypt'
+gem 'omniauth'
+gem 'omniauth-instagram'
+# ==============================
+
+# ==============================
+# SNS/API関連
+# ------------------------------
+gem 'twitter'
+gem 'twitter-text'
+gem 'koala' # Facebook
+# ==============================
+
+# ==============================
+# アップローダ関連
+# ------------------------------
+gem 'shrine'
+gem 'carrierwave'
+# ==============================
+
+# ==============================
+# マルチメディア関連
+# ------------------------------
+gem 'carrierwave-audio'
+gem 'carrierwave-video'
+gem 'mini_magick'
+gem 'streamio-ffmpeg'
+# ==============================
+
+# ==============================
+# 高速化関連
+# ------------------------------
+gem 'bootsnap'
+# ==============================
+
+# ==============================
+# ローカライズ関連
+# ------------------------------
+gem 'i18n-timezones'
+gem 'i18n-js' # JSでI18nを使う
+gem 'enum_help' # enumをI18nでローカライズする
+# ==============================
+
+# ==============================
+# その他
+# ------------------------------
+gem 'ransack' # 検索用
+gem 'sidekiq' # 非同期タスク
+gem 'whenever' # cron管理
+gem 'slack-notifier' # Slack通知
+gem 'rack-user_agent' # UA拡張
+gem 'kaminari' # ページネーション
+gem 'config' # 環境毎にYAMLで定数を定義できる
+gem 'dotenv-rails' # 環境変数
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# ==============================
+
+group :development, :test do
+  # ==============================
+  # デバッグ関連
+  # ------------------------------
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'hirb'
+  gem 'pry-byebug'
+  gem 'pry-doc'
+  gem 'pry-rails'
+  gem 'pry-stack_explorer'
+  gem 'tapp'
+  gem 'view_source_map'
+  gem 'letter_opener'
+  gem 'letter_opener_web'
+  # ==============================
+
+  # ==============================
+  # パフォーマンス関連
+  # ------------------------------
+  gem 'rack-mini-profiler'
+  gem 'bullet' # N+1を検出
+  gem 'activerecord-cause' # クエリ実行箇所出力
+  gem 'stackprof' # メソッド実行時間メトリクス
+  # ==============================
+
+  # ==============================
+  # テスト関連
+  # ------------------------------
+  gem 'rspec-rails'
+  gem 'rspec-rails-ext'
+  gem 'rspec-rails-mocha'
+  gem 'webmock'
+  gem 'vcr'
+  gem 'rails-controller-testing'
+  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers', branch: 'rails-5'
+  gem 'timecop'
+  gem 'simplecov'
+  gem 'i18n-spec'
+  gem 'faker'
+  gem 'gimei' # 日本語のテストデータ用
+  gem 'factory_bot_rails'
+  # ==============================
+end
+
+group :development do
+  # ==============================
+  # デプロイ関連
+  # ------------------------------
+  gem 'capistrano'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-ext'
+  gem 'capistrano-sidekiq'
+  gem 'capistrano-yarn'
+  gem 'capistrano3-env'
+  gem 'capistrano3-notification'
+  gem 'capistrano3-nginx'
+  gem 'capistrano3-puma'
+  gem 'slackistrano'
+  # ==============================
+
+  # ==============================
+  # コード/設定検証関連
+  # ------------------------------
+  gem 'rubocop'
+  gem 'rubocop-rails'
+  gem 'rubocop-rspec'
+  gem 'guard-rubocop'
+  gem 'html2haml', require: false
+  gem 'i18n-tasks'
+  gem 'rails_best_practices'
+  # ==============================
+
+  # ==============================
+  # Railsデフォルト
+  # ------------------------------
+  gem 'web-console'
+  gem 'listen'
+  gem 'spring'
+  gem 'spring-watcher-listen'
+  # ==============================
+end
