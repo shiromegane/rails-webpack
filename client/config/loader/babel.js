@@ -1,13 +1,11 @@
 module.exports = {
   test: /\.js$/,
-  exclude: /node_modules/,
+  exclude: file => /node_modules/.test(file) && !/\.vue\.js/.test(file),
   use: [
     {
       loader: 'babel-loader',
       options: {
-        presets: [
-          ['env', {'modules': false}]
-        ],
+        presets: [['env', { modules: false }]],
       },
     },
   ],

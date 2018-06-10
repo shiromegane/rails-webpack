@@ -1,28 +1,28 @@
-const path = require('path')
+const { resolve } = require('path')
 const merge = require('webpack-merge')
 const dir = require('./directory')
+const entries = require('./entries')
 const plugins = require('./plugins')
 const loaders = require('./loaders')
-const envConfig = require(path.resolve(dir.environment, `${process.env.NODE_ENV}.js`))
+const optimizers = require('./optimizers')
+const resolvers = require('./resolvers')
+
+const envConfig = require(resolve(
+  dir.environment,
+  `${process.env.NODE_ENV}.js`
+))
 
 module.exports = merge(envConfig, {
-  entry: {
-    app: path.resolve(dir.entry, 'entry.js'),
-    app2: path.resolve(dir.entry, 'entry.js'),
-  },
+  entry: entries,
   output: {
-    filename: '[name].js',
+    filename: '[name]-[hash].js',
     path: dir.output,
     publicPath: '/',
   },
   module: {
-    rules: loaders
+    rules: loaders,
   },
-  resolve: {
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    },
-    extensions: ['*', '.js', '.vue', '.json']
-  },
+  resolve: resolvers,
   plugins: plugins,
+  optimization: optimizers,
 })

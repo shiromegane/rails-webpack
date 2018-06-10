@@ -1,7 +1,11 @@
 {
   "extends": [
     "eslint:recommended",
-    "plugin:vue/recommended"
+    "plugin:vue/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "vue"
   ],
   "env": {
     "browser": true,
@@ -16,6 +20,9 @@
     "semi-style": ["error", "first"],
     "no-extra-semi": "error",
     "no-unexpected-multiline": "error",
-    "no-unreachable": "error"
+    "no-unreachable": "error",
+    "no-console": "off",
+    "vue/max-attributes-per-line": "off",
+    "prettier/prettier": "error"
   }
 }

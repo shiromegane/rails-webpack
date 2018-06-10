@@ -1,37 +1,39 @@
-const enabledSourceMap = (process.env.NODE_ENV === 'development')
+const { resolve } = require('path')
+const dir = require('../directory')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 module.exports = {
   test: /\.s?[ac]ss$/,
   use: [
     {
-      loader: 'vue-style-loader'
+      loader: 'vue-style-loader',
     },
-    {
-      loader: 'style-loader'
-    },
+    MiniCssExtractPlugin.loader,
     {
       loader: 'css-loader',
-      options: {
-        url: false,
-        sourceMap: enabledSourceMap,
-        minimize: true,
-        importLoaders: 2
-      },
     },
     {
       loader: 'postcss-loader',
       options: {
-        sourceMap: true,
+        ident: 'postcss',
+        sourceMap: false,
         plugins: [
-          require('autoprefixer')({grid: true})
-        ]
+          require('autoprefixer')({ grid: true }),
+          require('postcss-flexboxfixer'),
+        ],
       },
     },
     {
+      loader: 'resolve-url-loader',
+    },
+    {
       loader: 'sass-loader',
+    },
+    {
+      loader: 'sass-resources-loader',
       options: {
-        sourceMap: enabledSourceMap,
-      }
-    }
-    ,
+        resources: resolve(dir.entry, '**/*.scss'),
+      },
+    },
   ],
 }

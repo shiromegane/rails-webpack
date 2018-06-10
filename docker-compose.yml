@@ -2,7 +2,7 @@ version: '3'
 services:
   db:
     image: mysql:5
-    container_name: app_db
+    container_name: mysql
     tty: true
     stdin_open: true
     environment:
@@ -16,14 +16,14 @@ services:
       - .docker/volumes/etc/mysql/mysql.cnf:/etc/mysql/mysql.cnf
   kvs:
     image: redis:alpine
-    container_name: app_kvs
+    container_name: redis
     tty: true
     stdin_open: true
     expose:
       - 6379
-  rails:
+  app:
     build: .docker/containers/app
-    image: rails_app:latest
+    image: rails:latest
     container_name: rails
     env_file: app.env
     tty: true
@@ -35,21 +35,21 @@ services:
     depends_on:
       - db
       - kvs
-#      - webpack
+      - webpack
     links:
       - db
       - db:database
       - db:mysql
       - kvs
       - kvs:redis
-#      - webpack
+      - webpack
     dns:
       - 1.1.1.1
       - 1.0.0.1
       - 8.8.8.8
       - 9.9.9.9
     volumes:
-      - ./application:/app:cached
+      - ./server:/app:cached
       - bundle:/bundle
       - ~/.ssh:/root/.ssh
     command: sh -c "rm -f tmp/pids/server.pid && bundle install && bundle exec rails s -b 0"
@@ -75,7 +75,7 @@ services:
     command: sh -c "nginx -g 'daemon off;'"
   webpack:
     build: .docker/containers/webpack
-    image: rails_webpack:latest
+    image: webpack:latest
     container_name: webpack
     tty: true
     stdin_open: true
@@ -89,12 +89,8 @@ services:
       - 8.8.8.8
       - 9.9.9.9
     volumes:
-      - node_modules:/node_modules
-      - .docker/volumes/node_modules:/node_modules
-      - ./application/app/frontend:/application/app/frontend
-      - ./application/config/webpack:/application/config/webpack
-      - ./application/public:/application/public
-    command: yarn run dev
+      - ./client:/client
+    command: sh -c "yarn install && yarn run dev"
   node-exporter:
     image: prom/node-exporter
     container_name: node-exporter
@@ -127,4 +123,3 @@ services:
     restart: always
 volumes:
   bundle:
-  node_modules:
