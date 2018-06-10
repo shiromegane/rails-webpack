@@ -6,22 +6,6 @@
       span {{ step }}
 </template>
 
-<script>
-export default {
-  name: 'Steps',
-  props: {
-    steps: {
-      type: Array,
-      required: true,
-    },
-    current: {
-      type: Number,
-      required: true,
-    },
-  },
-}
-</script>
-
 <style lang="scss" scoped>
 $height: 2rem;
 $half-height: $height / 2;
@@ -129,3 +113,19 @@ $arrow-z-index: 1;
   }
 }
 </style>
+
+<script>
+export default {
+  name: 'Steps',
+  props: {
+    steps: {
+      type: Array,
+      required: true,
+    },
+    current: {
+      type: Number,
+      required: true,
+    },
+  },
+}
+</script>
