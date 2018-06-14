@@ -1,0 +1,10 @@
+%h1 Home#index
+
+-#%vue{ 'data-name': 'Steps', 'data-props': { steps: %w[AAA BBB CCC], current: 1 }.to_json }
+-#%vue{ data: { name: 'Steps', props: { steps: %w[AAA BBB CCC], current: 1 }.to_json } }
+-#%div{ data: { name: 'Steps', props: { steps: %w[AAA BBB CCC], current: 1 }.to_json } }
+-#= vue 'Steps'
+= vue 'Steps2'
+= vue 'Steps', steps: %w[AAA BBB CCC], current: 1
+= vue 'Steps', steps: %w[AAA BBB CCC], current: 2
+= vue 'Steps', steps: %w[AAA BBB CCC], current: 3

@@ -116,7 +116,7 @@ $arrow-z-index: 1;
 
 <script>
 export default {
-  name: 'Steps',
+  name: 'Steps2',
   props: {
     steps: {
       type: Array,

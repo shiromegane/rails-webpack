@@ -1,4 +1,4 @@
-const dir = require('./directory')
+const dir = require('./directories')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')

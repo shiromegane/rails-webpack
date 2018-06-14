@@ -1,6 +1,6 @@
 const { resolve } = require('path')
 const merge = require('webpack-merge')
-const dir = require('./directory')
+const dir = require('./directories')
 const entries = require('./entries')
 const plugins = require('./plugins')
 const loaders = require('./loaders')

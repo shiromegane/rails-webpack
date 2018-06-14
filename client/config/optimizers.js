@@ -5,9 +5,19 @@ module.exports = {
   minimize: true,
   minimizer: [
     new UglifyJsPlugin({
+      exclude: /\/node_modules/,
       cache: true,
       parallel: true,
       sourceMap: false,
+      uglifyOptions: {
+        ecma: 6,
+        warnings: false,
+        output: {
+          comments: false,
+          beautify: false,
+        },
+        safari10: true,
+      },
     }),
     new OptimizeCSSAssetsPlugin({}),
   ],

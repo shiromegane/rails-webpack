@@ -1,5 +1,5 @@
 const { resolve } = require('path')
-const dir = require('./directory')
+const dir = require('./directories')
 
 module.exports = {
   app: resolve(dir.entry, 'entry.js'),

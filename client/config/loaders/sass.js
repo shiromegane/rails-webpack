@@ -1,5 +1,5 @@
 const { resolve } = require('path')
-const dir = require('../directory')
+const dir = require('../directories')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {

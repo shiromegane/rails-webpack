@@ -1,0 +1,3 @@
+webpack:
+  host: http://0.0.0.0:8080
+  manifest: http://webpack:8080/manifest.json

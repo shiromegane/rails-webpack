@@ -1,13 +1,11 @@
-const dir = require('../directory')
+const dir = require('../directories')
 module.exports = {
   mode: 'development',
   watch: true,
   devtool: 'inline-source-map',
   devServer: {
     open: false,
-    contentBase: [
-      dir.output
-    ],
+    contentBase: [dir.output],
     host: '0.0.0.0',
     port: 8080,
     hot: true,
@@ -19,7 +17,10 @@ module.exports = {
     noInfo: false,
     publicPath: '/',
     watchContentBase: true,
-    headers: { 'Access-Control-Allow-Origin': '*' },
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': 'true',
+    },
     watchOptions: { ignored: /node_modules/ },
   },
 }
