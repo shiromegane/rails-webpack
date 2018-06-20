@@ -1,0 +1,149 @@
+@import 'variables';
+
+@mixin button-default {
+  appearance: none;
+  box-sizing: border-box;
+  text-decoration: none;
+  display: inline-block;
+  height: 4rem;
+  line-height: 4rem;
+  padding: 0 1.2rem;
+  background: $color-clouds;
+  color: $color-gray;
+  border: $border-default;
+  outline: none;
+  font-size: 1.4rem;
+  border-radius: .4rem;
+  text-align: center;
+  vertical-align: bottom;
+  cursor: pointer;
+  &:hover {
+    color: inherit;
+    text-decoration: inherit;
+  }
+  &:focus {
+    outline: none;
+    border-color: $color-peter-river;
+  }
+  &:disabled, &[disabled], &[disabled="disabled"], &.disabled {
+    cursor: not-allowed;
+    background: $color-silver;
+    color: $color-clouds;
+    border-color: $color-clouds;
+  }
+  &:active {
+    box-shadow: $shadow-button-inset;
+  }
+  &::-moz-focus-inner {
+    border: 0;
+    outline: 0;
+  }
+}
+
+@mixin fixed-table {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+@mixin box-shadow {
+  box-shadow: 0 0 2px $color-box-shadow;
+}
+
+@mixin steps-ul {
+  @include fixed-table;
+  border-collapse: collapse;
+  height: $step-height;
+}
+
+@mixin step-li {
+  display: table-cell;
+  height: 100%;
+  color: $step-default-text-color;
+  background: $step-default-bgcolor;
+  font-size: 0.8rem;
+  padding: 0 0.4rem 0 0.8rem;
+  position: relative;
+  border: 0;
+}
+
+@mixin step-number {
+  line-height: 1.6rem;
+  font-size: $step-number-font-size;
+  display: block;
+  position: relative;
+}
+
+@mixin step-text{
+  line-height: 2rem;
+  font-size: $step-item-font-size;
+  display: block;
+  position: relative;
+}
+
+@mixin steps {
+  @include steps-ul;
+  & > li {
+    @include step-li;
+    & > .number {
+      @include step-number;
+    }
+    & > .text {
+      @include step-text;
+    }
+    &:first-of-type {
+      padding-left: 0.5rem;
+    }
+    &:last-of-type {
+      padding-right: 0.5rem;
+      &:before,
+      &:after {
+        display: none;
+      }
+    }
+    &:before,
+    &:after {
+      box-sizing: border-box;
+      position: absolute;
+      top: 0;
+      content: '';
+      height: $step-arrow-height;
+      width: $step-arrow-width;
+      border-top: $step-arrow-height-half solid transparent;
+      border-bottom: $step-arrow-height-half solid transparent;
+      border-right: 0;
+      z-index: $step-arrow-z-index;
+    }
+    &:before {
+      right: $step-arrow-border-indent;
+      border-left: $step-arrow-width solid $step-arrow-border-color;
+    }
+    &:after {
+      right: $step-arrow-bg-indent;
+      border-left: $step-arrow-width solid $step-arrow-default-bgcolor;
+    }
+    &.finished {
+      color: $step-finished-text-color;
+      background: $step-finished-bgcolor;
+      &:after {
+        border-left-color: $step-arrow-finished-bgcolor;
+      }
+      & > .number:before {
+        font-family: 'WebHostingHub-Glyphs';
+        content: '\2713';
+        margin-right: .4rem;
+        color: $color-peter-river;
+        display: inline-block;
+        position: relative;
+        vertical-align: bottom;
+      }
+    }
+    &.current {
+      color: $step-current-text-color;
+      background: $step-current-bgcolor;
+      &:after {
+        border-left-color: $step-arrow-current-bgcolor;
+      }
+    }
+  }
+}

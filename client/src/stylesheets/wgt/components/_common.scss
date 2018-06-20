@@ -1,0 +1,267 @@
+@import 'variables';
+@import 'mixins';
+
+.text-align-left {
+  text-align: left;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.font-weight-normal {
+  font-weight: normal;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+.font-style-normal {
+  font-style: normal;
+}
+
+.font-style-italic {
+  font-style: italic;
+}
+
+.font-style-oblique {
+  font-style: oblique;
+}
+
+.vertical-align-top {
+  vertical-align: top;
+}
+
+.vertical-align-middle {
+  vertical-align: middle;
+}
+
+.vertical-align-bottom {
+  vertical-align: bottom;
+}
+
+.vertical-align-text-top {
+  vertical-align: text-top;
+}
+
+.vertical-align-text-bottom {
+  vertical-align: text-bottom;
+}
+
+.vertical-align-super {
+  vertical-align: super;
+}
+
+.vertical-align-sub {
+  vertical-align: sub;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-fixed {
+  position: fixed;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-inline {
+  display: inline;
+}
+
+.display-inline-block {
+  display: inline-block;
+}
+
+.display-table {
+  display: table;
+}
+
+.display-table-cell {
+  display: table-cell;
+}
+
+.display-inline-table {
+  display: inline-table;
+}
+
+.display-flex {
+  display: -webkit-flex;
+  display: flex;
+}
+
+.overflow-visible {
+  overflow: visible;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.clear-left {
+  clear: left;
+}
+
+.clear-right {
+  clear: right;
+}
+
+.clear-both {
+  clear: both;
+}
+
+.table-layout-fixed {
+  table-layout: fixed;
+}
+
+.container {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.box-center {
+  margin: 0 auto;
+}
+
+.full-width, .width-100percent {
+  width: 100%;
+}
+
+.border-wrap {
+  border: $border-default;
+}
+
+.corner {
+  border-radius: .4rem;
+}
+
+.no-corner {
+  border-radius: 0;
+}
+
+.plaintext {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.null {
+  color: $color-clouds;
+  font-style: italic;
+}
+
+.empty {
+  color: $color-silver;
+  font-style: italic;
+}
+
+.flash-message {
+  background: $color-clouds;
+  color: $color-asbestos;
+  padding: 0 1rem;
+  border-radius: .4rem;
+  line-height: 4.4rem;
+  margin-bottom: 2rem;
+}
+
+.flash-message.success {
+  background: $color-peter-river;
+  color: $color-white;
+}
+
+.flash-message.notice {
+  background: $color-emerald;
+  color: $color-white;
+}
+
+.flash-message.warning {
+  background: $color-carrot;
+  color: $color-white;
+}
+
+.flash-message.error {
+  background: $color-alizarin;
+  color: $color-white;
+}
+
+.flash-message:before {
+  font-family: 'WebHostingHub-Glyphs';
+  display: inline-block;
+  vertical-align: bottom;
+  margin-right: .4rem;
+  font-size: 2rem;
+}
+
+.flash-message.success:before {
+  content: '\f471';
+}
+
+.flash-message.notice:before {
+  content: '\f315';
+}
+
+.flash-message.warning:before {
+  content: '\f05a';
+}
+
+.flash-message.error:before {
+  content: '\f470';
+}
+
+.must:after {
+  content: '必須';
+  background: $color-pomegranate;
+  border-radius: .2rem;
+  font-size: 1.2rem;
+  padding: .4rem;
+  margin-left: .4rem;
+  color: $color-white;
+  vertical-align: bottom;
+}
+
+.optional:after {
+  content: '任意';
+  background: $color-asbestos;
+  border-radius: .2rem;
+  font-size: 1.2rem;
+  padding: .4rem;
+  margin-left: .4rem;
+  color: $color-white;
+  vertical-align: bottom;
+}

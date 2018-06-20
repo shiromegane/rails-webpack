@@ -4,36 +4,82 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   test: /\.s?[ac]ss$/,
-  use: [
+  oneOf: [
     {
-      loader: 'vue-style-loader',
+      resourceQuery: /^\?vue/,
+      use: [
+        {
+          loader: 'vue-style-loader',
+        },
+        MiniCssExtractPlugin.loader,
+        {
+          loader: 'css-loader',
+          options: {
+            url: false,
+            minimize: false,
+            sourceMap: false,
+          },
+        },
+        {
+          loader: 'postcss-loader',
+          options: {
+            ident: 'postcss',
+            sourceMap: false,
+            plugins: [
+              require('autoprefixer')({ grid: true }),
+              require('postcss-flexboxfixer'),
+            ],
+          },
+        },
+        {
+          loader: 'resolve-url-loader',
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: false,
+          },
+        },
+        {
+          loader: 'sass-resources-loader',
+          options: {
+            resources: [resolve(dir.stylesheets, 'materialize.scss')],
+          },
+        },
+      ],
     },
-    MiniCssExtractPlugin.loader,
     {
-      loader: 'css-loader',
-    },
-    {
-      loader: 'postcss-loader',
-      options: {
-        ident: 'postcss',
-        sourceMap: false,
-        plugins: [
-          require('autoprefixer')({ grid: true }),
-          require('postcss-flexboxfixer'),
-        ],
-      },
-    },
-    {
-      loader: 'resolve-url-loader',
-    },
-    {
-      loader: 'sass-loader',
-    },
-    {
-      loader: 'sass-resources-loader',
-      options: {
-        resources: resolve(dir.entry, '**/*.scss'),
-      },
+      use: [
+        MiniCssExtractPlugin.loader,
+        {
+          loader: 'css-loader',
+          options: {
+            url: false,
+            minimize: false,
+            sourceMap: false,
+          },
+        },
+        {
+          loader: 'postcss-loader',
+          options: {
+            ident: 'postcss',
+            sourceMap: false,
+            plugins: [
+              require('autoprefixer')({ grid: true }),
+              require('postcss-flexboxfixer'),
+            ],
+          },
+        },
+        {
+          loader: 'resolve-url-loader',
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: false,
+          },
+        },
+      ],
     },
   ],
 }

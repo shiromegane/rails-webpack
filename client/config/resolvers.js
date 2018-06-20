@@ -4,9 +4,16 @@ const dir = require('./directories')
 module.exports = {
   modules: [resolve(dir.entry), 'node_modules'],
   alias: {
+    $: 'jquery',
+    jQuery: 'jquery',
+    jquery: 'jquery',
+    'window.jQuery': 'jquery',
+    _: 'lodash',
     Modules: resolve(dir.modules),
     vue$: 'vue/dist/vue.esm.js',
-    VueSFC: resolve(dir.sfc),
+    vuex: 'vuex/dist/vuex.js',
+    VueSFC: resolve(dir.vueSfc),
+    Sass: resolve(dir.stylesheets),
   },
   extensions: ['*', '.js', '.vue', '.json', '.scss'],
 }

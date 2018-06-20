@@ -1,0 +1,26 @@
+@import 'variables';
+@import 'mixins';
+
+/**  Button ============================================================ */
+.button {
+  @include button-default;
+  &.prev:before {
+    font-family: 'WebHostingHub-Glyphs';
+    content: '\f489';
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-right: .2rem;
+    position: relative;
+  }
+  &.next:after {
+    font-family: 'WebHostingHub-Glyphs';
+    content: '\f488';
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-left: .2rem;
+    position: relative;
+  }
+
+}

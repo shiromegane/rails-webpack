@@ -1,0 +1,25 @@
+@import "~materialize-css/sass/materialize";
+
+$color-google: #dd4b39 !important;
+$color-facebook: #3b5998 !important;
+$color-twitter: #55acee !important;
+$color-instagram: #d93177 !important;
+$color-line: #00b900 !important;
+
+.sns-bgcolor {
+  &.google {
+    background-color: $color-google;
+  }
+  &.facebook {
+    background-color: $color-facebook;
+  }
+  &.twitter {
+    background-color: $color-twitter;
+  }
+  &.instagram {
+    background-color: $color-instagram;
+  }
+  &.line {
+    background-color: $color-line;
+  }
+}

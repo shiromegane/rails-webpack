@@ -23,9 +23,21 @@ module.exports = {
   ],
   splitChunks: {
     cacheGroups: {
-      styles: {
-        name: 'styles',
-        test: /\.css$/,
+      icons: {
+        name: 'icons',
+        test: /src\/stylesheets\/icons\.s?[ac]ss$/,
+        chunks: 'all',
+        enforce: true,
+      },
+      materialize: {
+        name: 'materialize',
+        test: /src\/stylesheets\/materialize\.s?[ac]ss$/,
+        chunks: 'all',
+        enforce: true,
+      },
+      wgt: {
+        name: 'wgt',
+        test: /src\/stylesheets\/wgt\.s?[ac]ss$/,
         chunks: 'all',
         enforce: true,
       },

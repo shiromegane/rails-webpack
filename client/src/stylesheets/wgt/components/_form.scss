@@ -1,0 +1,385 @@
+@import 'variables';
+@import 'mixins';
+
+/**  Form ============================================================ */
+fieldset {
+  border: $border-default;
+  padding: .4rem;
+  position: relative;
+}
+
+fieldset legend {
+  padding: 0 .2rem;
+}
+
+label {
+  cursor: pointer;
+  margin: 0 .2rem;
+  line-height: 4.4rem;
+}
+
+label.focus {
+  color: $color-peter-river;
+}
+
+input, textarea, select, button {
+  position: relative;
+  font-size: 1.6rem;
+  margin: 0;
+  padding: 0;
+  vertical-align: bottom;
+  box-sizing: border-box;
+}
+
+input, select {
+  vertical-align: middle;
+}
+
+select, button {
+  cursor: pointer;
+}
+
+input[type="text"], input[type="search"], input[type="tel"], input[type="email"], input[type="password"], input[type="url"], input[type="number"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="week"], input[type="time"] {
+  box-sizing: border-box;
+  appearance: none;
+  outline: none;
+  height: 4.4rem;
+  padding: 0 .8rem;
+  border: $border-default;
+  color: $color-gray;
+  vertical-align: bottom;
+  font-size: 1.6rem;
+  border-radius: .4rem;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+input[type="color"] {
+  appearance: none;
+  outline: none;
+  height: 4.4rem;
+  width: 3.2rem;
+  border: $border-default;
+  vertical-align: bottom;
+  border-radius: .4rem;
+}
+
+input[type="radio"], input[type="checkbox"] {
+  appearance: none;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+input[type="radio"] + label, input[type="checkbox"] + label {
+  position: relative;
+  cursor: pointer;
+  height: 4.4rem;
+  margin-left: 0;
+  padding: 0 .8rem;
+  line-height: 4.4rem;
+  display: inline-block;
+  vertical-align: top;
+  border: 1px solid transparent;
+  border-radius: .4rem;
+}
+
+input[type="radio"] + label:before {
+  font-family: 'WebHostingHub-Glyphs';
+  content: '\f1bc';
+  font-size: 2rem;
+  margin-right: .2rem;
+  color: $color-silver;
+  display: inline-block;
+  position: relative;
+  vertical-align: bottom;
+}
+
+input[type="radio"]:checked + label {
+  color: $color-peter-river;
+}
+
+input[type="radio"]:checked + label:before {
+  font-family: 'WebHostingHub-Glyphs';
+  content: '\f566';
+  color: $color-peter-river;
+}
+
+input[type="radio"]:focus + label {
+  border-color: $color-peter-river;
+  color: $color-peter-river;
+}
+
+input[type="radio"]:focus + label:before {
+  color: $color-peter-river;
+}
+
+input[type="checkbox"] + label:before {
+  font-family: 'WebHostingHub-Glyphs';
+  content: '\25ad';
+  font-size: 1.6rem;
+  margin-right: .4rem;
+  color: $color-silver;
+  display: inline-block;
+  position: relative;
+  vertical-align: bottom;
+}
+
+input[type="checkbox"]:checked + label:before {
+  font-family: 'WebHostingHub-Glyphs';
+  content: '\f310';
+  color: $color-peter-river;
+}
+
+input[type="checkbox"]:checked + label {
+  color: $color-peter-river;
+}
+
+input[type="checkbox"]:focus + label {
+  color: $color-peter-river;
+}
+
+input[type="checkbox"]:focus + label:before {
+  color: $color-peter-river;
+}
+
+.switch {
+  display: inline-table;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.switch > .item {
+  display: table-cell;
+  vertical-align: middle;
+  height: 4.4rem;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.switch > .item:first-of-type, .switch > .item:first-of-type label {
+  border-top-left-radius: .4rem;
+  border-bottom-left-radius: .4rem;
+}
+
+.switch > .item:last-of-type, .switch > .item:last-of-type label {
+  border-top-right-radius: .4rem;
+  border-bottom-right-radius: .4rem;
+}
+
+.switch > .item > input + label {
+  margin: 0;
+  display: block;
+  width: 100%;
+  padding: 0 .8rem;
+  text-align: center;
+  min-width: 6.4rem;
+  line-height: 4.4rem;
+  height: 4.4rem;
+  border: $border-default;
+  color: $color-gray;
+  font-size: 1.4rem;
+}
+
+.switch > .item:not(:first-of-type) > input + label {
+  border-left: 0;
+}
+
+.switch > .item > input:checked + label {
+  color: $color-white;
+  background-color: $color-peter-river;
+}
+
+.switch > .item > input + label:before {
+  content: '';
+}
+
+.switch > .item > input:checked + label:before {
+  content: '';
+}
+
+select {
+  outline: none;
+  height: 4.4rem;
+  padding: 0 .8rem;
+  border: $border-default;
+  color: $color-gray;
+  font-size: 1.6rem;
+  border-radius: .4rem;
+  background: none;
+  vertical-align: bottom;
+  position: relative;
+}
+
+select[multiple="multiple"], select[multiple] {
+  appearance: none;
+  height: auto;
+  padding: .8rem;
+}
+
+.select-box {
+  height: 4.4rem;
+  background: none;
+  position: relative;
+  display: inline-block;
+  vertical-align: bottom;
+  border-radius: .4rem;
+}
+
+.select-box:after {
+  font-family: 'WebHostingHub-Glyphs';
+  content: '\f48b';
+  line-height: 4.4rem;
+  position: absolute;
+  top: 0;
+  right: .8rem;
+  font-size: 1rem;
+  z-index: 1;
+  color: $color-asbestos;
+}
+
+.select-box > select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  padding: 0 2.4rem 0 .8rem;
+  border: $border-default;
+  border-radius: .4rem;
+  color: $color-gray;
+  font-size: 1.6rem;
+  background: none;
+  z-index: 2;
+}
+
+textarea {
+  appearance: none;
+  outline: none;
+  padding: .4rem .8rem;
+  border: $border-default;
+  color: $color-gray;
+  resize: none;
+  border-radius: .4rem;
+}
+
+input[type="text"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="url"]:focus, input[type="number"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="week"]:focus, input[type="time"]:focus, input[type="color"]:focus, textarea:focus, select:focus, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus, button:focus {
+  outline: none;
+  border-color: $color-peter-river;
+}
+
+input[type="text"]:focus + label, input[type="tel"]:focus + label, input[type="email"]:focus + label, input[type="search"]:focus + label {
+  color: $color-peter-river
+}
+
+input[type="submit"], input[type="button"], input[type="reset"], button {
+  @include button-default;
+}
+
+.inline-combo {
+  display: inline-table;
+  border-collapse: collapse;
+  border-spacing: 0;
+  vertical-align: bottom;
+}
+
+.inline-combo > .item {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.inline-combo > .item > input, .inline-combo > .item > button, .inline-combo > .item > a.button {
+  border-radius: 0;
+}
+
+.inline-combo > .item:first-of-type > input, .inline-combo > .item:first-of-type > button, .inline-combo > .item:first-of-type > a.button {
+  border-top-left-radius: .4rem;
+  border-bottom-left-radius: .4rem;
+}
+
+.inline-combo > .item:last-of-type > input, .inline-combo > .item:last-of-type > button, .inline-combo > .item:last-of-type > a.button {
+  border-top-right-radius: .4rem;
+  border-bottom-right-radius: .4rem;
+}
+
+.inline-combo > .item:not(:first-of-type) > input, .inline-combo > .item:not(:first-of-type) > button, .inline-combo > .item:not(:first-of-type) > a.button {
+  margin-left: -1px;
+}
+
+.inline-combo > .item > input:focus, .inline-combo > .item > button:focus, .inline-combo > .item > a.button:focus {
+  z-index: 200;
+}
+
+*:disabled, *[disabled], *[disabled="disabled"], .switch > .item > *:disabled + label, input[readonly], input[readonly="readonly"], textarea[readonly], textarea[readonly="readonly"], a.button.disabled, a.button.readonly {
+  cursor: not-allowed;
+  background: $color-silver;
+  color: $color-clouds;
+}
+
+*:disabled + label, *:disabled + label:before, *[disabled] + label, *[disabled] + label:before, *[disabled="disabled"] + label, *[disabled="disabled"] + label:before {
+  cursor: not-allowed;
+  color: $color-clouds;
+}
+
+button::-moz-focus-inner, input[type="reset"]::-moz-focus-inner, input[type="button"]::-moz-focus-inner, input[type="submit"]::-moz-focus-inner, select::-moz-focus-inner, input[type="file"] > input[type="button"]::-moz-focus-inner {
+  border: 0;
+  outline: 0;
+}
+
+::-moz-placeholder {
+  color: $color-silver;
+  font-weight: normal;
+}
+
+::-webkit-input-placeholder {
+  color: $color-silver;
+  font-weight: normal;
+}
+
+:-ms-input-placeholder {
+  color: $color-silver;
+  font-weight: normal;
+}
+
+.upload-wrapper {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.upload-wrapper > button {
+  margin: 0;
+  cursor: pointer;
+  vertical-align: bottom;
+}
+
+.upload-wrapper > p {
+  display: inline-block;
+  height: 4.4rem;
+  line-height: 4.4rem;
+  margin-left: .2rem;
+}
+
+.upload-wrapper > input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4.4rem;
+  cursor: pointer;
+  opacity: 0;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px $color-white inset;
+}

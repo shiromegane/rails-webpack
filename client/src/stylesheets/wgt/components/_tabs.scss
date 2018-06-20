@@ -1,0 +1,51 @@
+@import 'variables';
+@import 'mixins';
+
+.tabs {
+  position: relative;
+}
+
+.tabs > input[type="radio"] {
+  display: none;
+}
+
+.tabs > input[type="radio"] + label {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  padding: 0 12px;
+  text-align: center;
+  border-radius: 4px 4px 0 0;
+  float: left;
+  margin: 0 0 0 2px;
+  color: $color-concrete;
+  background: $color-clouds;
+}
+
+.tabs > input[type="radio"]:first-of-type + label {
+  margin: 0;
+}
+
+.tabs > input[type="radio"] + label + div {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  display: none;
+  clear: left;
+  width: 100%;
+  padding-top: 2px;
+  border-top: 4px solid $color-peter-river;
+}
+
+.tabs > input[type="radio"] + label:before {
+  content: none;
+}
+
+.tabs > input[type="radio"]:checked + label {
+  background: $color-peter-river;
+  color: $color-white;
+  border: 0;
+}
+
+.tabs > input[type="radio"]:checked + label + div {
+  display: block;
+}

@@ -1,0 +1,85 @@
+@import 'variables';
+@import 'mixins';
+
+a {
+  cursor: pointer;
+}
+
+a:link, a:visited {
+  color: $color-peter-river;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  color: $color-belize-hole;
+  outline: none;
+  text-decoration: underline;
+}
+
+a[href^="mailto:"]:before {
+  font-family: 'WebHostingHub-Glyphs';
+  content: '\f136';
+  display: inline-block;
+  text-decoration: none;
+  margin-right: 1px;
+  position: relative;
+  top: 2px;
+}
+
+/*a[href^="#"]:after{font-family:'WebHostingHub-Glyphs';content:'\f473';display:inline-block;text-decoration:none;margin-left:1px;position:relative;top:2px;}*/
+a[href$="#"]:after {
+  content: '';
+}
+
+a[target="_blank"]:before {
+  font-family: 'WebHostingHub-Glyphs';
+  content: '\f332';
+  display: inline-block;
+  text-decoration: none;
+  margin-right: 1px;
+  position: relative;
+  top: 2px;
+}
+
+a.disabled {
+  color: $color-silver;
+  text-decoration: none;
+  cursor: not-allowed;
+}
+
+a.sortable {
+  position: relative;
+}
+
+a.sortable:after {
+  font-family: 'LigatureSymbols';
+  content: '\E120';
+  margin-left: 4px;
+  font-size: 16px;
+  display: inline-block;
+  text-decoration: none;
+  color: $color-silver;
+  font-weight: normal;
+}
+
+a.sortable.asc:after {
+  font-family: 'typicons';
+  content: '\e01e';
+  color: $color-peter-river;
+}
+
+a.sortable.desc:after {
+  font-family: 'typicons';
+  content: '\e01d';
+  color: $color-peter-river;
+}
+
+a.wrapper {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}

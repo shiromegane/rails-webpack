@@ -1,0 +1,63 @@
+/* Color ========================================================================== */
+$color-turquoise: #1abc9c;
+$color-green-sea: #16a085;
+$color-emerald: #2ecc71;
+$color-nephritis: #27ae60;
+$color-peter-river: #3498db;
+$color-belize-hole: #2980b9;
+$color-wet-asphalt: #34495e;
+$color-midnight-blue: #2c3e50;
+$color-amethyst: #9b59b6;
+$color-wisteria: #8e44ad;
+$color-sunflower: #f1c40f;
+$color-orange: #f39c12;
+$color-carrot: #e67e22;
+$color-pumpkin: #d35400;
+$color-alizarin: #e74c3c;
+$color-pomegranate: #c0392b;
+$color-white: #fff;
+$color-white-gray: #fcfcfc;
+$color-clouds: #ecf0f1;
+$color-silver: #bdc3c7;
+$color-concrete: #95a5a6;
+$color-asbestos: #7f8c8d;
+$color-gray: #666;
+$color-dark-gray: #333;
+$color-black: #000;
+$color-box-shadow: rgba(0,0,0,0.1);
+$color-google: #dd4b39;
+$color-facebook: #3b5998;
+$color-twitter: #55acee;
+$color-instagram: #d93177;
+$color-line: #00b900;
+
+/* Border ========================================================================= */
+$border-light: 1px solid $color-clouds;
+$border-default: 1px solid $color-silver;
+$border-dense: 1px solid $color-concrete;
+
+/* Shadow ========================================================================= */
+$shadow-button-inset: inset 0 0 2px $color-box-shadow;
+
+/* Steps ========================================================================== */
+$step-height: 3.6rem;
+$step-half-height: $step-height / 2;
+$step-arrow-height: $step-height - 0.05rem;
+$step-arrow-height-half: $step-arrow-height / 2;
+$step-arrow-width: 0.5rem;
+$step-arrow-border-indent: -$step-arrow-width;
+$step-arrow-bg-indent: $step-arrow-border-indent + 0.05rem;
+$step-default-text-color: $color-belize-hole;
+$step-default-bgcolor: $color-clouds;
+$step-finished-text-color: $color-asbestos;
+$step-finished-bgcolor: $color-clouds;
+$step-current-bgcolor: $color-peter-river;
+$step-current-text-color: $color-white;
+$step-arrow-border-color: $color-asbestos;
+$step-arrow-default-bgcolor: $step-default-bgcolor;
+$step-arrow-current-bgcolor: $step-current-bgcolor;
+$step-arrow-finished-bgcolor: $step-finished-bgcolor;
+$step-arrow-z-index: 1;
+$step-number-font-size: 1rem;
+$step-item-font-size: 1.4rem;
+/* ================================================================================ */

@@ -8,7 +8,7 @@ const optimizers = require('./optimizers')
 const resolvers = require('./resolvers')
 
 const envConfig = require(resolve(
-  dir.environment,
+  dir.environments,
   `${process.env.NODE_ENV}.js`
 ))
 
