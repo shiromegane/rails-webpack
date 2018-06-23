@@ -1,6 +1,11 @@
 %head
   = csrf_meta_tags
   = csp_meta_tag
-  -#= stylesheet_link_tag 'application', media: 'all'
-  = stylesheet_link_tag webpack_asset_path('app.css')
+  = stylesheet_link_tag '//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons', media: 'all'
+  = stylesheet_link_tag webpack_asset_path('app.css'), media: 'all'
+  = stylesheet_link_tag webpack_asset_path('materialize.css'), media: 'all'
+  = stylesheet_link_tag webpack_asset_path('icons.css'), media: 'all'
+
   = Gon::Base.render_data
+  %meta{ charset: 'UTF-8' }
+  %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0,user-scalable=no' }

@@ -1,0 +1,11 @@
+%header.global
+  %div.navbar-fixed
+    %nav
+      .nav-wrapper
+        = link_to 'Logo', root_path, class: 'brand-logo'
+        = link_to '#', class: 'sidenav-trigger', data: { target: 'mobile-nav' } do
+          %i.material-icons menu
+        %ul.right.hide-on-med-and-down
+          = render 'layouts/nav/items'
+    %ul.sidenav{ id: 'mobile-nav' }
+      = render 'layouts/nav/items'

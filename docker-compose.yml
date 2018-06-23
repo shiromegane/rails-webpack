@@ -21,11 +21,11 @@ services:
     stdin_open: true
     expose:
       - 6379
-  app:
-    build: .docker/containers/app
+  rails:
+    build: .docker/containers/rails
     image: rails:latest
     container_name: rails
-    env_file: app.env
+    env_file: rails.env
     tty: true
     stdin_open: true
     expose:
@@ -62,9 +62,9 @@ services:
       - 80:80
       - 443:443
     depends_on:
-      - app
+      - rails
     links:
-      - app
+      - rails
     dns:
       - 1.1.1.1
       - 1.0.0.1

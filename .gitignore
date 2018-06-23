@@ -1,7 +1,5 @@
 .docker/volumes/var/lib/mysql/*
 !.docker/volumes/var/lib/mysql/.gitkeep
-.docker/volumes/node_modules/*
-!.docker/volumes/node_modules/.gitkeep
 *.log
 *.env
 server/tmp/*

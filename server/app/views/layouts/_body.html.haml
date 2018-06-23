@@ -1,5 +1,5 @@
 %body{ id: "#{controller_name}-#{action_name}" }
-  = yield
-
-  -#他の要素はここより上に書く
+  = render 'layouts/header'
+  = render 'layouts/main'
+  = render 'layouts/footer'
   = javascript_include_tag webpack_asset_path('app.js')

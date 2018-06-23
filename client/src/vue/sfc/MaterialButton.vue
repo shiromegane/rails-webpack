@@ -1,13 +1,7 @@
 <template lang="pug">
 .material-button
-  a.waves-effect.waves-light.btn(v-if="type === 'link'" :class="color" :href="href" @click.prevent="onClick")
-    i.material-icons.left(v-if="leftIcon") {{ leftIcon }}
-    | {{ text }}
-    i.material-icons.right(v-if="rightIcon") {{ rightIcon }}
-  button.waves-effect.waves-light.btn(v-if="type === 'button'" :class="color" type="submit" @click.prevent="onClick")
-    i.material-icons.left(v-if="leftIcon") {{ leftIcon }}
-    | {{ text }}
-    i.material-icons.right(v-if="rightIcon") {{ rightIcon }}
+  a.waves-effect.waves-light.btn(v-if="!submit" :class="addClass" :href="href" @click.prevent="onClick" v-html="text")
+  button.waves-effect.waves-light.btn(v-if="submit" :class="addClass" type="submit" v-html="text")
 </template>
 
 <style lang="scss" scoped>
@@ -17,33 +11,24 @@
 </style>
 
 <script>
-// TODO: SNS系のカラーを指定出来るようにする
 export default {
   name: 'MaterialButton',
   props: {
-    type: {
-      type: String,
-      default: 'link',
-    },
     text: {
       type: String,
-      default: 'Button',
+      required: true,
     },
-    color: {
+    addClass: {
       type: String,
-      default: 'light-blue darken-1',
+      default: null,
     },
     href: {
       type: String,
       default: null,
     },
-    leftIcon: {
-      type: String,
-      default: null,
-    },
-    rightIcon: {
-      type: String,
-      default: null,
+    submit: {
+      type: Boolean,
+      default: false,
     },
   },
   methods: {

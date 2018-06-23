@@ -1,10 +1,10 @@
-%h1 Home#index
-
--#%vue{ 'data-name': 'Steps', 'data-props': { steps: %w[AAA BBB CCC], current: 1 }.to_json }
--#%vue{ data: { name: 'Steps', props: { steps: %w[AAA BBB CCC], current: 1 }.to_json } }
--#%div{ data: { name: 'Steps', props: { steps: %w[AAA BBB CCC], current: 1 }.to_json } }
--#= vue 'Steps'
-= vue 'Steps2'
-= vue 'Steps', steps: %w[AAA BBB CCC], current: 1
-= vue 'Steps', steps: %w[AAA BBB CCC], current: 2
-= vue 'Steps', steps: %w[AAA BBB CCC], current: 3
+%h1 Welcome
+.row
+  .divider
+  %div.section= vue 'MaterialButton', text: '<i class="icon fab fa google left"></i>Google', addClass: 'sns-bgcolor google btn', href: 'https://google.com'
+  .divider
+  %div.section= vue 'MaterialButton', text: '<i class="icon fab fa facebook left"></i>Facebook', addClass: 'sns-bgcolor facebook btn', href: 'https://facebook.com'
+  .divider
+  %div.section= vue 'MaterialButton', text: '<i class="icon fab fa twitter left"></i>Twitter', addClass: 'sns-bgcolor twitter btn', href: 'https://twitter.com'
+  .divider
+  %div.section= vue 'MaterialButton', text: '<i class="icon fab fa line left"></i>Line', addClass: 'sns-bgcolor line btn', href: 'https://line.me'

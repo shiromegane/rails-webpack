@@ -39,7 +39,6 @@ export default class VueMounter {
   _createVueComponent(component, element) {
     return new Promise(resolve => {
       const dataProps = element.dataset.props
-      console.log(dataProps)
       const props = dataProps ? JSON.parse(dataProps) : {}
       new Vue({
         el: element,

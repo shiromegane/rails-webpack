@@ -120,6 +120,7 @@ gem 'rack-user_agent' # UA拡張
 gem 'kaminari' # ページネーション
 gem 'config' # 環境毎にYAMLで定数を定義できる
 gem 'dotenv-rails' # 環境変数
+gem 'sentry-raven'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # ==============================
 

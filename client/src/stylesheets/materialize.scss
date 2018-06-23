@@ -1,11 +1,17 @@
 @import "~materialize-css/sass/materialize";
 
-$color-google: #dd4b39 !important;
-$color-facebook: #3b5998 !important;
-$color-twitter: #55acee !important;
-$color-instagram: #d93177 !important;
-$color-line: #00b900 !important;
+$color-google: #dd4b39;
+$color-facebook: #3b5998;
+$color-twitter: #55acee;
+$color-instagram: #d93177;
+$color-line: #00b900;
 
+/* upcaseが気に食わないので上書き */
+.btn, .btn-flat, .btn-large, .btn-small {
+  text-transform: none;
+}
+
+/* SNS系カラーを使えるようにしとく */
 .sns-bgcolor {
   &.google {
     background-color: $color-google;

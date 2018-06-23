@@ -43,7 +43,10 @@ module.exports = {
         {
           loader: 'sass-resources-loader',
           options: {
-            resources: [resolve(dir.stylesheets, 'materialize.scss')],
+            resources: [
+              resolve(dir.stylesheets, 'materialize.scss'),
+              resolve(dir.stylesheets, 'icons.scss'),
+            ],
           },
         },
       ],
